@@ -57,7 +57,7 @@ public class TimeDateWidget9  extends TimeDateWidget {
             case MINUTE:
                 hmTV.setText(TimeFormatter.getTime(true, false, ":"));
             case SECOND:
-                LOG.e("Time", TimeFormatter.getTime(true, true, ":"));
+                LOG.v("Time", TimeFormatter.getTime(true, true, ":"));
                 break;
             default:
                 break;
