@@ -1,0 +1,72 @@
+{
+	"id" : "0",
+	"name" : "raindrop",
+	"parser" : "iLocker",
+	"lockmenu" : "1",
+	"lockcover" : "#363636",
+	"rootview" : [
+		{
+			"type" : "CustomLockBackgroundView",
+			"width" : "1",
+			"height" : "1"
+		},
+		{
+			"type" : "NewHorizontalMainView",
+			"children" : [
+				{
+					"type" : "CustomPassView",
+					"width" : "1",
+					"height" : "1",
+					"children" : [
+						{
+							"type" : "CustomPassNoneView",
+							"width" : "match",
+							"height" : "match"
+						},
+						{
+							"type" : "CustomPassPinView",
+							"skin" : "0",
+							"width" : "match",
+							"height" : "match",
+							"h-rule" : "h-center",
+							"v-rule" : "v-center",
+							"font_en" : "DIN-Light.otf",
+							"font_zh" : "hye2gjm.ttf"
+						},
+						{
+							"type" : "CustomPassLineView",
+							"skin" : "0",
+							"h-rule" : "h-center",
+							"v-rule" : "v-center",
+							"width" : "match",
+							"height" : "match"
+						}
+					]
+				},
+				{
+					"type" : "CustomLockShowView",
+					"width" : "1",
+					"height" : "1",
+					"children" : [
+						{
+							"type" : "TimeDateMarkWidget1",
+							"skin" : 0,
+							"width" : "wrap",
+							"height" : "wrap",
+							"editLevel" : 1,
+							"v-rule" : "bottom",
+							"left": 0.075,
+							"right": 0.075,
+							"bottom" : "0.11"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type" : "CustomLockHeartView",
+			"width" : "1",
+			"height" : "1"
+		}
+	]
+}
