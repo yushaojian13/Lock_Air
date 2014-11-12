@@ -1,15 +1,16 @@
-package com.xmht.lock.core.view.time;
+package com.xmht.lock.core.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import com.xmht.lock.core.data.time.observe.UpdateLevel;
-import com.xmht.lock.core.data.time.observe.UpdateLevelObserver;
+import com.xmht.lock.core.data.time.format.TimeFormatter;
+import com.xmht.lock.core.data.time.observe.TimeLevel;
+import com.xmht.lock.core.data.time.observe.TimeLevelObserver;
 import com.xmht.lock.core.view.common.Widget;
-import com.xmht.lock.core.view.listener.HorizontalSlideListener;
+import com.xmht.lock.core.view.listener.SwipeListener;
 
-public abstract class TimeDateWidget extends Widget implements UpdateLevelObserver {
+public abstract class TimeDateWidget extends Widget implements TimeLevelObserver {
     
     public TimeDateWidget(Context context) {
         this(context, null);
@@ -21,8 +22,17 @@ public abstract class TimeDateWidget extends Widget implements UpdateLevelObserv
     
     public TimeDateWidget(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setView();
         setFont();
+    }
+
+    @Override
+    public void onStart() {
+        TimeFormatter.register(this);
+    }
+
+    @Override
+    public void onStop() {
+        TimeFormatter.unregister(this);
     }
     
     float downX = 0;
@@ -32,9 +42,9 @@ public abstract class TimeDateWidget extends Widget implements UpdateLevelObserv
     float upX;
     float upY;
     
-    private HorizontalSlideListener horizontalSlideListener;
+    private SwipeListener horizontalSlideListener;
     
-    public void setHorizontalSlideListner(HorizontalSlideListener slideListener) {
+    public void setHorizontalSlideListner(SwipeListener slideListener) {
         horizontalSlideListener = slideListener;
     }
     
@@ -54,9 +64,9 @@ public abstract class TimeDateWidget extends Widget implements UpdateLevelObserv
                 upY = event.getRawY();
                 
                 if (horizontalSlideListener != null && upX - downX > getWidth() * 0.2f) {
-                    horizontalSlideListener.rightSlide();
+                    horizontalSlideListener.rightSwipe();
                 } else if (horizontalSlideListener != null && upX - downX < -getWidth() * 0.2f) {
-                    horizontalSlideListener.leftSlide();
+                    horizontalSlideListener.leftSwipe();
                 } 
                 break;
         }
@@ -67,6 +77,6 @@ public abstract class TimeDateWidget extends Widget implements UpdateLevelObserv
     protected abstract void setFont();
 
     @Override
-    public abstract void onUpdate(UpdateLevel level);
+    public abstract void onTimeChanged(TimeLevel level);
     
 }

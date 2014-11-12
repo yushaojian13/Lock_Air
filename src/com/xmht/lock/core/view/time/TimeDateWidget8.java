@@ -6,9 +6,10 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.xmht.lock.core.data.time.format.TimeFormatter;
-import com.xmht.lock.core.data.time.observe.UpdateLevel;
+import com.xmht.lock.core.data.time.observe.TimeLevel;
 import com.xmht.lock.core.debug.LOG;
 import com.xmht.lock.core.utils.Utils;
+import com.xmht.lock.core.view.TimeDateWidget;
 import com.xmht.lockair.R;
 
 public class TimeDateWidget8  extends TimeDateWidget {
@@ -47,7 +48,7 @@ public class TimeDateWidget8  extends TimeDateWidget {
     }
     
     @Override
-    public void onUpdate(UpdateLevel level) {
+    public void onTimeChanged(TimeLevel level) {
         switch (level) {
             case YEAR:
             case MONTH:

@@ -4,7 +4,7 @@ package com.xmht.lock.core.data.time.format;
 import java.util.Locale;
 
 import com.xmht.lock.core.data.time.engine.TimeRaw;
-import com.xmht.lock.core.data.time.observe.UpdateLevelObserver;
+import com.xmht.lock.core.data.time.observe.TimeLevelObserver;
 import com.xmht.lock.core.debug.LOG;
 
 public class TimeFormatter {
@@ -36,7 +36,7 @@ public class TimeFormatter {
         timeRaw = TimeRaw.getInstance();
     }
 
-    public static void register(UpdateLevelObserver observer) {
+    public static void register(TimeLevelObserver observer) {
         if (observer == null) {
             LOG.e("Operation cannot be done, observer is null!");
             return;
@@ -45,7 +45,7 @@ public class TimeFormatter {
         timeRaw.registerObserver(observer);
     }
 
-    public static void unregister(UpdateLevelObserver observer) {
+    public static void unregister(TimeLevelObserver observer) {
         if (observer == null) {
             LOG.e("Operation cannot be done, observer is null!");
             return;

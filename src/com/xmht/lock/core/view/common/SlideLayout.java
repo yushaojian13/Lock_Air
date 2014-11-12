@@ -12,10 +12,9 @@ import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
 import com.xmht.lock.core.activity.LockActivity;
-import com.xmht.lock.core.data.time.format.TimeFormatter;
-import com.xmht.lock.core.view.listener.HorizontalSlideListener;
-import com.xmht.lock.core.view.listener.LockEvent;
-import com.xmht.lock.core.view.time.TimeDateWidget;
+import com.xmht.lock.core.view.TimeDateWidget;
+import com.xmht.lock.core.view.listener.SwipeListener;
+import com.xmht.lock.core.view.time.TimeDateInfoWidget1;
 import com.xmht.lock.core.view.time.TimeDateWidget1;
 import com.xmht.lock.core.view.time.TimeDateWidget4;
 import com.xmht.lock.core.view.time.TimeDateWidget5;
@@ -27,7 +26,7 @@ import com.xmht.lock.core.view.unlock.RainUnlockView;
 import com.xmht.lock.core.view.unlock.RainUnlockView.UnlockListener;
 import com.xmht.lockair.R;
 
-public class SlideLayout extends RelativeLayout implements LockEvent, HorizontalSlideListener {
+public class SlideLayout extends Widget implements SwipeListener {
     int screenWidth;
     int screenHeight;
 
@@ -43,6 +42,10 @@ public class SlideLayout extends RelativeLayout implements LockEvent, Horizontal
 
     public SlideLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    @Override
+    protected void setView() {
         wallpapers = new int[] {
                 R.drawable.chunv, R.drawable.shuangzi, R.drawable.jiniu,
                 R.drawable.baiyang, R.drawable.mojie,
@@ -51,7 +54,8 @@ public class SlideLayout extends RelativeLayout implements LockEvent, Horizontal
                 R.drawable.tianxie, R.drawable.juxie
         };
         timevViews = new TimeDateWidget[] {
-                new TimeDateWidget1(getContext()), new TimeDateWidget4(getContext()),
+                new TimeDateInfoWidget1(getContext()), new TimeDateWidget1(getContext()),
+                new TimeDateWidget4(getContext()),
                 new TimeDateWidget5(getContext()), new TimeDateWidget6(getContext()),
                 new TimeDateWidget7(getContext()), new TimeDateWidget8(getContext()),
                 new TimeDateWidget9(getContext())
@@ -79,13 +83,13 @@ public class SlideLayout extends RelativeLayout implements LockEvent, Horizontal
 
     private void addTimeView() {
         if (timeView != null) {
-            TimeFormatter.unregister(timeView);
+            timeView.onStop();
             removeView(timeView);
         }
 
         timeView = timevViews[widgetIndex];
         timeView.setHorizontalSlideListner(this);
-        TimeFormatter.register(timeView);
+        timeView.onStart();
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
@@ -156,12 +160,12 @@ public class SlideLayout extends RelativeLayout implements LockEvent, Horizontal
 
     @Override
     public void onStart() {
-        TimeFormatter.register(timeView);
+        timeView.onStart();
     }
 
     @Override
     public void onStop() {
-        TimeFormatter.unregister(timeView);
+        timeView.onStop();
     }
 
     private void showMenuDialog() {
@@ -192,14 +196,14 @@ public class SlideLayout extends RelativeLayout implements LockEvent, Horizontal
     }
 
     @Override
-    public void leftSlide() {
+    public void leftSwipe() {
         widgetIndex--;
         widgetIndex = (widgetIndex + timevViews.length) % timevViews.length;
         addTimeView();
     }
 
     @Override
-    public void rightSlide() {
+    public void rightSwipe() {
         widgetIndex++;
         widgetIndex = widgetIndex % timevViews.length;
         addTimeView();

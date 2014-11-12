@@ -7,11 +7,11 @@ import java.util.List;
 import android.text.format.Time;
 
 import com.xmht.lock.core.data.time.observe.SecondObserver;
-import com.xmht.lock.core.data.time.observe.UpdateLevel;
-import com.xmht.lock.core.data.time.observe.UpdateLevelObservable;
-import com.xmht.lock.core.data.time.observe.UpdateLevelObserver;
+import com.xmht.lock.core.data.time.observe.TimeLevel;
+import com.xmht.lock.core.data.time.observe.TimeLevelObservable;
+import com.xmht.lock.core.data.time.observe.TimeLevelObserver;
 
-public class TimeRaw implements UpdateLevelObservable, SecondObserver {
+public class TimeRaw implements TimeLevelObservable, SecondObserver {
 
     private Time time;
 
@@ -54,7 +54,7 @@ public class TimeRaw implements UpdateLevelObservable, SecondObserver {
     public void onUpdate() {
         time.setToNow();
         if (year != time.year) {
-            notifyObservers(UpdateLevel.YEAR);
+            notifyObservers(TimeLevel.YEAR);
             year = time.year;
             month = time.month;
             week = time.weekDay;
@@ -64,7 +64,7 @@ public class TimeRaw implements UpdateLevelObservable, SecondObserver {
             second = time.second;
         }
         else if (month != time.month) {
-            notifyObservers(UpdateLevel.MONTH);
+            notifyObservers(TimeLevel.MONTH);
             month = time.month;
             week = time.weekDay;
             day = time.monthDay;
@@ -73,7 +73,7 @@ public class TimeRaw implements UpdateLevelObservable, SecondObserver {
             second = time.second;
         }
         else if (week != time.weekDay) {
-            notifyObservers(UpdateLevel.WEEK);
+            notifyObservers(TimeLevel.WEEK);
             week = time.weekDay;
             day = time.monthDay;
             hour = time.hour;
@@ -81,43 +81,43 @@ public class TimeRaw implements UpdateLevelObservable, SecondObserver {
             second = time.second;
         }
         else if (day != time.monthDay) {
-            notifyObservers(UpdateLevel.DAY);
+            notifyObservers(TimeLevel.DAY);
             day = time.monthDay;
             hour = time.hour;
             minute = time.minute;
             second = time.second;
         }
         else if (hour != time.hour) {
-            notifyObservers(UpdateLevel.HOUR);
+            notifyObservers(TimeLevel.HOUR);
             hour = time.hour;
             minute = time.minute;
             second = time.second;
         }
         else if (minute != time.minute) {
-            notifyObservers(UpdateLevel.MINUTE);
+            notifyObservers(TimeLevel.MINUTE);
             minute = time.minute;
             second = time.second;
         }
         else if (second != time.second) {
-            notifyObservers(UpdateLevel.SECOND);
+            notifyObservers(TimeLevel.SECOND);
             second = time.second;
         }
     }
 
-    private List<UpdateLevelObserver> observers = new ArrayList<UpdateLevelObserver>();
+    private List<TimeLevelObserver> observers = new ArrayList<TimeLevelObserver>();
 
     @Override
-    public void registerObserver(UpdateLevelObserver observer) {
+    public void registerObserver(TimeLevelObserver observer) {
         if (observers.contains(observer)) {
             return;
         }
         
-        observer.onUpdate(UpdateLevel.YEAR);
+        observer.onTimeChanged(TimeLevel.YEAR);
         observers.add(observer);
     }
 
     @Override
-    public void unregisterObserver(UpdateLevelObserver observer) {
+    public void unregisterObserver(TimeLevelObserver observer) {
         int i = observers.indexOf(observer);
         if (i >= 0) {
             observers.remove(i);
@@ -125,9 +125,9 @@ public class TimeRaw implements UpdateLevelObservable, SecondObserver {
     }
 
     @Override
-    public void notifyObservers(UpdateLevel level) {
-        for (UpdateLevelObserver observer : observers) {
-            observer.onUpdate(level);
+    public void notifyObservers(TimeLevel level) {
+        for (TimeLevelObserver observer : observers) {
+            observer.onTimeChanged(level);
         }
     }
 

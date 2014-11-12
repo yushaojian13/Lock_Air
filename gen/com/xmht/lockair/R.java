@@ -65,30 +65,43 @@ public final class R {
     public static final class drawable {
         public static final int baiyang=0x7f020000;
         public static final int chunv=0x7f020001;
-        public static final int dialog_bg=0x7f02000e;
+        public static final int dialog_bg=0x7f02001e;
         public static final int ic_launcher=0x7f020002;
-        public static final int jiniu=0x7f020003;
-        public static final int juxie=0x7f020004;
-        public static final int mojie=0x7f020005;
-        public static final int right_arrow=0x7f020006;
-        public static final int sheshou=0x7f020007;
-        public static final int shizi=0x7f020008;
-        public static final int shuangyu=0x7f020009;
-        public static final int shuangzi=0x7f02000a;
-        public static final int shuiping=0x7f02000b;
-        public static final int tianping=0x7f02000c;
-        public static final int tianxie=0x7f02000d;
+        public static final int icon_power_0=0x7f020003;
+        public static final int icon_power_1=0x7f020004;
+        public static final int icon_power_2=0x7f020005;
+        public static final int icon_power_3=0x7f020006;
+        public static final int icon_power_4=0x7f020007;
+        public static final int icon_power_5=0x7f020008;
+        public static final int jiniu=0x7f020009;
+        public static final int juxie=0x7f02000a;
+        public static final int mojie=0x7f02000b;
+        public static final int right_arrow=0x7f02000c;
+        public static final int sheshou=0x7f02000d;
+        public static final int shizi=0x7f02000e;
+        public static final int shuangyu=0x7f02000f;
+        public static final int shuangzi=0x7f020010;
+        public static final int shuiping=0x7f020011;
+        public static final int signal_level_0=0x7f020012;
+        public static final int signal_level_1=0x7f020013;
+        public static final int signal_level_2=0x7f020014;
+        public static final int signal_level_3=0x7f020015;
+        public static final int signal_level_4=0x7f020016;
+        public static final int tianping=0x7f020017;
+        public static final int tianxie=0x7f020018;
+        public static final int wifi_level_0=0x7f020019;
+        public static final int wifi_level_1=0x7f02001a;
+        public static final int wifi_level_2=0x7f02001b;
+        public static final int wifi_level_3=0x7f02001c;
+        public static final int wifi_level_4=0x7f02001d;
     }
     public static final class id {
-        public static final int action_exit=0x7f07001e;
+        public static final int action_exit=0x7f070019;
         public static final int battery_tip=0x7f070002;
         public static final int battery_tv=0x7f070003;
-        public static final int bgGV=0x7f070018;
         public static final int call_tip=0x7f070000;
-        public static final int container=0x7f07001c;
-        public static final int cover=0x7f07001a;
+        public static final int container=0x7f070018;
         public static final int date=0x7f07000e;
-        public static final int date_line=0x7f07001d;
         public static final int day=0x7f07000f;
         public static final int fragment_container=0x7f070016;
         public static final int low_battery=0x7f070004;
@@ -98,7 +111,6 @@ public final class R {
         public static final int root=0x7f070017;
         public static final int signal_level=0x7f070006;
         public static final int styleCircle=0x7f070015;
-        public static final int tick=0x7f07001b;
         public static final int time_all=0x7f070007;
         public static final int time_am_pm=0x7f07000c;
         public static final int time_h_m=0x7f070008;
@@ -108,22 +120,19 @@ public final class R {
         public static final int time_weiget=0x7f070012;
         public static final int tip_msg=0x7f070013;
         public static final int touchTip=0x7f070014;
-        public static final int wallpaper=0x7f070019;
         public static final int week=0x7f07000d;
         public static final int year=0x7f070011;
     }
     public static final class layout {
         public static final int activity_lock=0x7f030000;
-        public static final int fragment_choose_bg=0x7f030001;
-        public static final int item_choose_bg=0x7f030002;
-        public static final int widget_time_date_1=0x7f030003;
-        public static final int widget_time_date_4=0x7f030004;
-        public static final int widget_time_date_5=0x7f030005;
-        public static final int widget_time_date_6=0x7f030006;
-        public static final int widget_time_date_7=0x7f030007;
-        public static final int widget_time_date_8=0x7f030008;
-        public static final int widget_time_date_9=0x7f030009;
-        public static final int widget_time_date_mark_1=0x7f03000a;
+        public static final int widget_time_date_1=0x7f030001;
+        public static final int widget_time_date_4=0x7f030002;
+        public static final int widget_time_date_5=0x7f030003;
+        public static final int widget_time_date_6=0x7f030004;
+        public static final int widget_time_date_7=0x7f030005;
+        public static final int widget_time_date_8=0x7f030006;
+        public static final int widget_time_date_9=0x7f030007;
+        public static final int widget_time_date_info_1=0x7f030008;
     }
     public static final class menu {
         public static final int lock=0x7f0a0000;
