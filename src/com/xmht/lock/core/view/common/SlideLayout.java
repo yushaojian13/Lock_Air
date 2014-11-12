@@ -14,16 +14,16 @@ import android.widget.RelativeLayout;
 import com.xmht.lock.core.activity.LockActivity;
 import com.xmht.lock.core.view.TimeDateWidget;
 import com.xmht.lock.core.view.listener.SwipeListener;
-import com.xmht.lock.core.view.time.TimeDateInfoWidget1;
-import com.xmht.lock.core.view.time.TimeDateWidget1;
-import com.xmht.lock.core.view.time.TimeDateWidget4;
-import com.xmht.lock.core.view.time.TimeDateWidget5;
-import com.xmht.lock.core.view.time.TimeDateWidget6;
-import com.xmht.lock.core.view.time.TimeDateWidget7;
-import com.xmht.lock.core.view.time.TimeDateWidget8;
-import com.xmht.lock.core.view.time.TimeDateWidget9;
 import com.xmht.lock.core.view.unlock.RainUnlockView;
 import com.xmht.lock.core.view.unlock.RainUnlockView.UnlockListener;
+import com.xmht.lock.core.view.widget.TimeDateInfoWidget1;
+import com.xmht.lock.core.view.widget.TimeDateWidget1;
+import com.xmht.lock.core.view.widget.TimeDateWidget4;
+import com.xmht.lock.core.view.widget.TimeDateWidget5;
+import com.xmht.lock.core.view.widget.TimeDateWidget6;
+import com.xmht.lock.core.view.widget.TimeDateWidget7;
+import com.xmht.lock.core.view.widget.TimeDateWidget8;
+import com.xmht.lock.core.view.widget.TimeDateWidget9;
 import com.xmht.lockair.R;
 
 public class SlideLayout extends Widget implements SwipeListener {

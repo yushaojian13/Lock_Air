@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.BatteryManager;
 
 import com.xmht.lock.core.activity.LockActivity;
 import com.xmht.lock.core.data.info.InfoCenter;
@@ -25,7 +26,7 @@ public class ScreenReceiver extends BroadcastReceiver {
         } else if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
             onScreenOff(context);
         } else if (action.equals(Intent.ACTION_BATTERY_CHANGED)) {
-            int rawlevel = intent.getIntExtra("level", -1);
+            int rawlevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
             onBatteryChanged(rawlevel);
         } else if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
             NetworkInfo info = intent

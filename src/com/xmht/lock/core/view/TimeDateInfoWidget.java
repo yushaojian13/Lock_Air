@@ -2,10 +2,13 @@
 package com.xmht.lock.core.view;
 
 import com.xmht.lock.core.data.info.InfoCenter;
+import com.xmht.lock.core.data.info.InfoCenter.InfoType;
 import com.xmht.lock.core.data.time.observe.InfoObserver;
 import com.xmht.lockair.R;
 
+import android.app.ApplicationErrorReport.BatteryInfo;
 import android.content.Context;
+import android.os.BatteryManager;
 import android.util.AttributeSet;
 
 public abstract class TimeDateInfoWidget extends TimeDateWidget implements InfoObserver {
@@ -35,9 +38,13 @@ public abstract class TimeDateInfoWidget extends TimeDateWidget implements InfoO
         InfoCenter.registerWifiRssiObserver(this);
     }
 
+    // YSJ 初始化设备信息
     @Override
     public void onStart() {
         super.onStart();
+        onInfoLevelChanged(InfoType.Battery, 100);
+        onInfoLevelChanged(InfoType.Wifi, wifiDrawable.length - 1);
+        onInfoLevelChanged(InfoType.Signal, signalDrawable.length - 1);
         InfoCenter.registerWifiRssiObserver(this);
     }
 

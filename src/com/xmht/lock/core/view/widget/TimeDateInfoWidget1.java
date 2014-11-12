@@ -1,5 +1,5 @@
 
-package com.xmht.lock.core.view.time;
+package com.xmht.lock.core.view.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

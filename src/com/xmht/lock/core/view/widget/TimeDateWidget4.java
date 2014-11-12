@@ -1,4 +1,5 @@
-package com.xmht.lock.core.view.time;
+
+package com.xmht.lock.core.view.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -12,47 +13,47 @@ import com.xmht.lock.core.utils.Utils;
 import com.xmht.lock.core.view.TimeDateWidget;
 import com.xmht.lockair.R;
 
-public class TimeDateWidget9  extends TimeDateWidget {
-    private TextView monthTV;
-    private TextView dayTV;
+public class TimeDateWidget4 extends TimeDateWidget {
     private TextView hmTV;
-    
-    public TimeDateWidget9(Context context) {
+    private TextView weekTV;
+    private TextView dateTV;
+
+    public TimeDateWidget4(Context context) {
         this(context, null);
     }
 
-    public TimeDateWidget9(Context context, AttributeSet attrs) {
+    public TimeDateWidget4(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
-    
-    public TimeDateWidget9(Context context, AttributeSet attrs, int defStyleAttr) {
+
+    public TimeDateWidget4(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-    
+
     @Override
     protected void setView() {
-        LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_9, this);
-        monthTV = (TextView) findViewById(R.id.month);
-        dayTV = (TextView) findViewById(R.id.day);
+        LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_4, this);
         hmTV = (TextView) findViewById(R.id.time_h_m);
+        weekTV = (TextView) findViewById(R.id.week);
+        dateTV = (TextView) findViewById(R.id.date);
     }
 
     @Override
     protected void setFont() {
-        Utils.setFontToView(monthTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(dayTV, "fonts/Helvetica-Light.ttf");
         Utils.setFontToView(hmTV, "fonts/Helvetica-Light.ttf");
+        Utils.setFontToView(weekTV, "fonts/Helvetica-Light.ttf");
+        Utils.setFontToView(dateTV, "fonts/Helvetica-Light.ttf");
     }
-    
+
     @Override
     public void onTimeChanged(TimeLevel level) {
         switch (level) {
             case YEAR:
             case MONTH:
-                monthTV.setText(TimeFormatter.getMonth(false, false));
             case WEEK:
+                weekTV.setText(TimeFormatter.getWeek(false, false));
             case DAY:
-                dayTV.setText(TimeFormatter.getDay(true));
+                dateTV.setText(TimeFormatter.getDate(false, false, " "));
             case HOUR:
             case MINUTE:
                 hmTV.setText(TimeFormatter.getTime(true, false, ":"));
@@ -63,5 +64,5 @@ public class TimeDateWidget9  extends TimeDateWidget {
                 break;
         }
     }
-    
+
 }
