@@ -10,10 +10,11 @@
 
     <!-- <uses-permission android:name="android.permission.INTERNET" /> -->
     <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
+        android:name="com.xmht.lock.core.LockAirAppication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -36,13 +37,19 @@
         </activity>
         -->
 
-
         <service android:name="com.xmht.lock.core.service.LockService" >
         </service>
+
+        <receiver
+            android:name="com.xmht.lock.core.receiver.ScreenReceiver"
+            android:priority="2147483647" >
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </receiver>
     </application>
-<!-- 
+    <!--
     <meta-data
         android:name="XMHT_APPNAME"
-        android:value="iLock" /> -->
+        android:value="iLock" />
+    -->
 
 </manifest>

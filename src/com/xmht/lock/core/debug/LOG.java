@@ -16,7 +16,7 @@ public class LOG {
     public static final int ASSERT = 0;
 
     private static String TAG = "LockAir";
-    private static boolean isLog = true;
+    private static boolean isLog = false;
     public static boolean isFormat = true;
     private static int LOG_LEVEL = ASSERT;
 
