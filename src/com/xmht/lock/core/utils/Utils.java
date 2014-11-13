@@ -8,8 +8,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.download.ImageDownloader.Scheme;
-
 public class Utils {
     public static float dip2px(Context context, float dp) {
         return dp * context.getResources().getDisplayMetrics().density;

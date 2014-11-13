@@ -1,10 +1,10 @@
 
 package com.xmht.lock.core.utils;
 
-import com.xmht.lockscreen.utils.LOG;
-
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.xmht.lock.core.debug.LOG;
 
 public class SPHelper {
     private static SharedPreferences sp;

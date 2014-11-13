@@ -1,5 +1,5 @@
 
-package com.xmht.lock.core.view.common;
+package com.xmht.lock.core.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,7 +13,6 @@ import android.widget.RelativeLayout;
 
 import com.xmht.lock.core.activity.LockActivity;
 import com.xmht.lock.core.utils.SPHelper;
-import com.xmht.lock.core.view.TimeDateWidget;
 import com.xmht.lock.core.view.listener.SwipeListener;
 import com.xmht.lock.core.view.unlock.RainUnlockView;
 import com.xmht.lock.core.view.unlock.RainUnlockView.UnlockListener;
@@ -26,7 +25,7 @@ import com.xmht.lock.core.view.widget.TimeDateWidget8;
 import com.xmht.lock.core.view.widget.TimeDateWidget9;
 import com.xmht.lockair.R;
 
-public class SlideLayout extends Widget implements SwipeListener {
+public class SlideLayout extends WidgetBase implements SwipeListener {
     int screenWidth;
     int screenHeight;
 
@@ -48,7 +47,7 @@ public class SlideLayout extends Widget implements SwipeListener {
     protected void setView() {
         wallpaperIndex = SPHelper.get("wallpaper", 0);
         widgetIndex = SPHelper.get("time", 0);
-        
+
         wallpapers = new int[] {
                 R.drawable.chunv, R.drawable.shuangzi, R.drawable.jiniu,
                 R.drawable.baiyang, R.drawable.mojie,
@@ -57,9 +56,7 @@ public class SlideLayout extends Widget implements SwipeListener {
                 R.drawable.tianxie, R.drawable.juxie
         };
         timevViews = new TimeDateWidget[] {
-//                new TimeDateInfoWidget1(getContext()), 
-                new TimeDateWidget1(getContext()),
-                new TimeDateWidget4(getContext()),
+                new TimeDateWidget1(getContext()), new TimeDateWidget4(getContext()),
                 new TimeDateWidget5(getContext()), new TimeDateWidget6(getContext()),
                 new TimeDateWidget7(getContext()), new TimeDateWidget8(getContext()),
                 new TimeDateWidget9(getContext())

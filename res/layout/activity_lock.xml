@@ -1,6 +1,6 @@
-<com.xmht.lock.core.view.common.SlideLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.xmht.lock.core.view.SlideLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-</com.xmht.lock.core.view.common.SlideLayout>
+</com.xmht.lock.core.view.SlideLayout>
