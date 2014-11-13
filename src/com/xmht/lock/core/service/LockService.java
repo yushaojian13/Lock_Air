@@ -34,8 +34,8 @@ public class LockService extends Service {
         screenReceiver = new ScreenReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_SCREEN_OFF);
-//        filter.addAction(Intent.ACTION_SCREEN_ON);
-//        filter.addAction(Intent.ACTION_USER_PRESENT);
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_USER_PRESENT);
 //        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
 //        filter.addAction(WifiManager.RSSI_CHANGED_ACTION);
 //        filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);

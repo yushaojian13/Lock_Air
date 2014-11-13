@@ -43,7 +43,9 @@
         <receiver
             android:name="com.xmht.lock.core.receiver.ScreenReceiver"
             android:priority="2147483647" >
-            <action android:name="android.intent.action.BOOT_COMPLETED" />
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
         </receiver>
     </application>
     <!--
