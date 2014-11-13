@@ -9,7 +9,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 
 import com.xmht.lock.core.service.LockService;
-import com.xmht.lock.core.view.common.SlideLayout;
+import com.xmht.lock.core.view.SlideLayout;
 import com.xmht.lock.core.view.unlock.RainUnlockView.UnlockListener;
 import com.xmht.lockair.R;
 

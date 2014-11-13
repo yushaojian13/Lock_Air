@@ -1,4 +1,4 @@
-package com.xmht.lock.core.view.common;
+package com.xmht.lock.core.view;
 
 import com.xmht.lock.core.view.listener.LockEvent;
 
@@ -6,16 +6,16 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-public abstract class Widget extends RelativeLayout implements LockEvent {
-    public Widget(Context context) {
+public abstract class WidgetBase extends RelativeLayout implements LockEvent {
+    public WidgetBase(Context context) {
         this(context, null);
     }
 
-    public Widget(Context context, AttributeSet attrs) {
+    public WidgetBase(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
     
-    public Widget(Context context, AttributeSet attrs, int defStyleAttr) {
+    public WidgetBase(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setView();
     }
