@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
@@ -14,8 +15,10 @@ import android.widget.RelativeLayout;
 import com.xmht.lock.core.activity.LockActivity;
 import com.xmht.lock.core.utils.SPHelper;
 import com.xmht.lock.core.view.listener.SwipeListener;
+import com.xmht.lock.core.view.listener.UnlockListener;
 import com.xmht.lock.core.view.unlock.RainUnlockView;
-import com.xmht.lock.core.view.unlock.RainUnlockView.UnlockListener;
+import com.xmht.lock.core.view.unlock.SlideUnlockView;
+import com.xmht.lock.core.view.unlock.SlideUnlockViewBak;
 import com.xmht.lock.core.view.widget.TimeDateWidget1;
 import com.xmht.lock.core.view.widget.TimeDateWidget4;
 import com.xmht.lock.core.view.widget.TimeDateWidget5;
@@ -25,12 +28,12 @@ import com.xmht.lock.core.view.widget.TimeDateWidget8;
 import com.xmht.lock.core.view.widget.TimeDateWidget9;
 import com.xmht.lockair.R;
 
-public class SlideLayout extends WidgetBase implements SwipeListener {
+public class SlideLayout extends Widget implements SwipeListener, UnlockListener {
     int screenWidth;
     int screenHeight;
 
     int[] wallpapers;
-
+//    Android Developer Tools Update Site - http://dl-ssl.google.com/android/eclipse/
     public SlideLayout(Context context) {
         this(context, null);
     }
@@ -55,11 +58,14 @@ public class SlideLayout extends WidgetBase implements SwipeListener {
                 R.drawable.shuangyu, R.drawable.shuiping, R.drawable.tianping,
                 R.drawable.tianxie, R.drawable.juxie
         };
-        timevViews = new TimeDateWidget[] {
+        timeViews = new TimeDateWidget[] {
                 new TimeDateWidget1(getContext()), new TimeDateWidget4(getContext()),
                 new TimeDateWidget5(getContext()), new TimeDateWidget6(getContext()),
                 new TimeDateWidget7(getContext()), new TimeDateWidget8(getContext()),
                 new TimeDateWidget9(getContext())
+        };
+        unlockViews = new UnlockView[] {
+                new SlideUnlockView(getContext()), new RainUnlockView(getContext()), new SlideUnlockViewBak(getContext())
         };
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
@@ -80,7 +86,7 @@ public class SlideLayout extends WidgetBase implements SwipeListener {
     }
 
     TimeDateWidget timeView;
-    TimeDateWidget[] timevViews;
+    TimeDateWidget[] timeViews;
 
     private void addTimeView() {
         if (timeView != null) {
@@ -88,7 +94,7 @@ public class SlideLayout extends WidgetBase implements SwipeListener {
             removeView(timeView);
         }
 
-        timeView = timevViews[widgetIndex];
+        timeView = timeViews[widgetIndex];
         timeView.setHorizontalSlideListner(this);
         timeView.onStart();
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -99,18 +105,23 @@ public class SlideLayout extends WidgetBase implements SwipeListener {
         addView(timeView);
     }
 
+    private UnlockView unlockView;
+    private UnlockView[] unlockViews;
+    private int unlockIndex;
+
     private void addUnlockView() {
-        RainUnlockView rainUnlockView = new RainUnlockView(getContext());
-        rainUnlockView.setDrawable(getResources().getDrawable(R.drawable.right_arrow));
-        if (getContext() instanceof UnlockListener) {
-            UnlockListener unlockListener = (UnlockListener) getContext();
-            rainUnlockView.setUnlockListener(unlockListener);
+        if (unlockView != null) {
+            removeView(unlockView);
         }
+
+        unlockView = unlockViews[unlockIndex];
+        unlockView.setUnlockListener(this);
+        unlockView.setBackgroundColor(Color.GRAY);
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, screenHeight / 10);
         lp.bottomMargin = screenHeight / 6;
         lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        rainUnlockView.setLayoutParams(lp);
-        addView(rainUnlockView);
+        unlockView.setLayoutParams(lp);
+        addView(unlockView);
     }
 
     float downX = 0;
@@ -201,14 +212,46 @@ public class SlideLayout extends WidgetBase implements SwipeListener {
     @Override
     public void leftSwipe() {
         widgetIndex--;
-        widgetIndex = (widgetIndex + timevViews.length) % timevViews.length;
+        widgetIndex = (widgetIndex + timeViews.length) % timeViews.length;
         addTimeView();
     }
 
     @Override
     public void rightSwipe() {
         widgetIndex++;
-        widgetIndex = widgetIndex % timevViews.length;
+        widgetIndex = widgetIndex % timeViews.length;
         addTimeView();
+    }
+
+    @Override
+    public void onLongPress() {
+//        unlockIndex++;
+//        unlockIndex = unlockIndex % unlockViews.length;
+//        addUnlockView();
+        showUnlockChooserDialog();
+    }
+    
+    private void showUnlockChooserDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.app_name)
+                .setItems(R.array.array_unlock, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                      unlockIndex++;
+                      unlockIndex = unlockIndex % unlockViews.length;
+                      addUnlockView();
+//                        switch (which) {
+//                            case 0:
+//                                showAboutDialog();
+//                                break;
+//                            case 1:
+//                                Intent intent = new Intent(LockActivity.ACTION_EXIT);
+//                                getContext().sendBroadcast(intent);
+//                                break;
+//                            default:
+//                                break;
+//                        }
+                    }
+                });
+        builder.create().show();
     }
 }

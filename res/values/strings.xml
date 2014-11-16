@@ -3,13 +3,20 @@
 
     <string name="app_name">Lock Air</string>
     <string name="action_about">Welcome to <b>Lock Air</b>!</string>
-    <string name="about_us">Author: <b>Leko Studio</b>\n\nOur products include:\niLocker\nText Cutie\n\nContact us:\n<u>yushaojian13@163.com</u>\n\nDelication to Wang Yiwei</string>
+    <string name="about_us">Author: <b>Leko Studio</b>\n\nOur products include:\niLocker\nText Cutie\n\nContact us:\n<u>yushaojian13@163.com</u></string>
     <string name="action_exit">Exit</string>
     <string name="unlock">Unlock</string>
+    <string name="slide_to_unlock">Slide to</string>
+    <string name="release_to_unlock">Release to</string>
 
     <string-array name="menu">
         <item>About</item>
         <item>Exit</item>
+    </string-array>
+    
+    <string-array name="array_unlock">
+        <item>Style 1</item>
+        <item>Style 2</item>
     </string-array>
 
 </resources>

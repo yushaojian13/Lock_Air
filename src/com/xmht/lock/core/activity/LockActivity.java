@@ -10,14 +10,14 @@ import android.os.Bundle;
 
 import com.xmht.lock.core.service.LockService;
 import com.xmht.lock.core.view.SlideLayout;
-import com.xmht.lock.core.view.unlock.RainUnlockView.UnlockListener;
 import com.xmht.lockair.R;
 
-public class LockActivity extends Activity implements UnlockListener {
+public class LockActivity extends Activity {
     private SlideLayout slideLayout;
-    
+
     private ExitReceiver exitReceiver;
-    
+
+    public static final String ACTION_UNLOCK = "com.xmht.lock.air.unlock";
     public static final String ACTION_EXIT = "com.xmht.lock.air.exit";
 
     @Override
@@ -28,7 +28,7 @@ public class LockActivity extends Activity implements UnlockListener {
         exitReceiver = new ExitReceiver();
         startService(new Intent(this, LockService.class));
     }
-    
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -38,20 +38,16 @@ public class LockActivity extends Activity implements UnlockListener {
 
     private void registerExitReceiver() {
         IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ACTION_UNLOCK);
         intentFilter.addAction(ACTION_EXIT);
         registerReceiver(exitReceiver, intentFilter);
     }
-    
+
     @Override
     protected void onStop() {
         super.onStop();
         slideLayout.onStop();
         unregisterReceiver(exitReceiver);
-    }
-
-    @Override
-    public void onUnlock() {
-        finish();
     }
 
     @Override
@@ -63,16 +59,17 @@ public class LockActivity extends Activity implements UnlockListener {
         finish();
         stopService(new Intent(this, LockService.class));
     }
-    
-    private class ExitReceiver extends BroadcastReceiver{
+
+    private class ExitReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (ACTION_EXIT.equals(action)) {
+            if (ACTION_UNLOCK.equals(action)) {
+                finish();
+            } else if (ACTION_EXIT.equals(action)) {
                 exit();
             }
-            
         }
     }
 }

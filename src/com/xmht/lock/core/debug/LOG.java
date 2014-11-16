@@ -33,26 +33,6 @@ public class LOG {
         LOG_LEVEL = level;
     }
 
-    public static void v() {
-        v("");
-    }
-
-    public static void d() {
-        d("");
-    }
-
-    public static void i() {
-        i("");
-    }
-
-    public static void w() {
-        w("");
-    }
-
-    public static void e() {
-        e("");
-    }
-
     public static void v(Object msg) {
         if (isLog) {
             Log.v(TAG, format(msg));

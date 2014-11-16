@@ -9,8 +9,20 @@ import android.graphics.Typeface;
 import android.widget.TextView;
 
 public class Utils {
+    public static int getDW(Context context) {
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
+    
+    public static int getDH(Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels;
+    }
+    
+    public static float getDensity(Context context) {
+        return context.getResources().getDisplayMetrics().density;
+    }
+    
     public static float dip2px(Context context, float dp) {
-        return dp * context.getResources().getDisplayMetrics().density;
+        return dp * getDensity(context);
     }
     
     private final static HashMap<String, SoftReference<Typeface>> TYPEFACE_CACHE = new HashMap<String, SoftReference<Typeface>>();
