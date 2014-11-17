@@ -2,10 +2,11 @@
 package com.xmht.lock.core.view.unlock;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.LinearInterpolator;
 
@@ -21,18 +22,25 @@ public class SlideUnlockView extends UnlockView {
     private AnimationBundle animationBundle = new AnimationBundle();
 
     public SlideUnlockView(Context context) {
-        super(context);
+        this(context, null);
+    }
+    public SlideUnlockView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public SlideUnlockView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         paint = new Paint();
         paint.setAntiAlias(true);
     }
-
+    
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        paint.setColor(Color.LTGRAY);
+        paint.setColor(0xffbdbdbd);
         canvas.drawRect(getWidth() * 0.05f, getHeight() * 0.45f, getWidth() * 0.95f,
                 getHeight() * 0.55f, paint);
-        paint.setColor(Color.DKGRAY);
+        paint.setColor(0xff4b4b4b);
         canvas.save(Canvas.MATRIX_SAVE_FLAG);
         canvas.translate(offsetX, 0);
         canvas.drawRect(getWidth() * 0.05f, getHeight() * 0.45f, getWidth() * 0.15f,
@@ -44,6 +52,7 @@ public class SlideUnlockView extends UnlockView {
     private float downX = 0f;
     private float moveX = 0f;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -70,7 +79,8 @@ public class SlideUnlockView extends UnlockView {
         offsetX = x;
     }
 
-    private void reset() {
+    @Override
+    protected void reset() {
         animationBundle.cancel();
         animationBundle.add(Tweener.to(this, ANIMATION_DURATION,
                 "ease", new LinearInterpolator(),

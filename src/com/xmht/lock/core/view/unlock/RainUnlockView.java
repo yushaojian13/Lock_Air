@@ -2,12 +2,14 @@
 package com.xmht.lock.core.view.unlock;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.LinearInterpolator;
 
@@ -35,21 +37,34 @@ public class RainUnlockView extends UnlockView {
     private static final int TEXT_COLOR = 0xFF363636;
 
     public RainUnlockView(Context context) {
-        super(context);
+        this(context, null);
+    }
+    
+    public RainUnlockView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public RainUnlockView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         textSize = Utils.dip2px(getContext(), 18);
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setTextSize(textSize);
-
+        
         textPaddingLeft = Utils.dip2px(getContext(), 25);
         textColor = TEXT_COLOR;
         text = context.getResources().getString(R.string.unlock);
-
-        waterMarkHeight = Utils.getDH(getContext()) * 0.08f;
-        waterMarkWidth = Utils.getDW(getContext()) * 0.7f;
+        
         waterMarkColor = MARK_COLOR;
-
+        
         setBackgroundColor(Color.TRANSPARENT);
+    }
+    
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        waterMarkHeight = getHeight();
+        waterMarkWidth = getWidth() * 0.7f;
     }
 
     @Override
@@ -110,6 +125,7 @@ public class RainUnlockView extends UnlockView {
     private float downX = 0f;
     private float moveX = 0f;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -139,7 +155,8 @@ public class RainUnlockView extends UnlockView {
         offsetX = translationX;
     }
 
-    private void reset() {
+    @Override
+    protected void reset() {
         animationBundle.cancel();
         animationBundle.add(Tweener.to(this, ANIMATION_DURATION,
                 "ease", new LinearInterpolator(),
@@ -156,6 +173,10 @@ public class RainUnlockView extends UnlockView {
         public void onAnimationUpdate(ValueAnimator animation) {
             invalidate();
         }
+    };
+    
+    protected int getDefaultHeightDenominator() {
+        return 13;
     };
 
 }

@@ -1,7 +1,6 @@
 package com.xmht.lock.core.view.widget;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.TextView;
@@ -14,10 +13,9 @@ import com.xmht.lock.core.view.TimeDateWidget;
 import com.xmht.lockair.R;
 
 public class TimeDateWidget7  extends TimeDateWidget {
-    private TextView hTV;
-    private TextView mTV;
-    private TextView weekTV;
-    private TextView dateTV;
+    private TextView monthTV;
+    private TextView dayTV;
+    private TextView hmTV;
     
     public TimeDateWidget7(Context context) {
         this(context, null);
@@ -33,19 +31,17 @@ public class TimeDateWidget7  extends TimeDateWidget {
     
     @Override
     protected void setView() {
-        LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_7, this);
-        hTV = (TextView) findViewById(R.id.time_hour);
-        mTV = (TextView) findViewById(R.id.time_minut);
-        weekTV = (TextView) findViewById(R.id.week);
-        dateTV = (TextView) findViewById(R.id.date);
+        LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_9, this);
+        monthTV = (TextView) findViewById(R.id.month);
+        dayTV = (TextView) findViewById(R.id.day);
+        hmTV = (TextView) findViewById(R.id.time_h_m);
     }
 
     @Override
     protected void setFont() {
-        Utils.setFontToView(hTV, "fonts/Helvetica-Light.ttf", Typeface.BOLD);
-        Utils.setFontToView(mTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(weekTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(dateTV, "fonts/Helvetica-Light.ttf");
+        Utils.setFontToView(monthTV, "fonts/Helvetica-Light.ttf");
+        Utils.setFontToView(dayTV, "fonts/Helvetica-Light.ttf");
+        Utils.setFontToView(hmTV, "fonts/Helvetica-Light.ttf");
     }
     
     @Override
@@ -53,14 +49,13 @@ public class TimeDateWidget7  extends TimeDateWidget {
         switch (level) {
             case YEAR:
             case MONTH:
+                monthTV.setText(TimeFormatter.getMonth(false, false));
             case WEEK:
-                weekTV.setText(TimeFormatter.getWeek(false, false));
             case DAY:
-                dateTV.setText(TimeFormatter.getDate(false, false, " "));
+                dayTV.setText(TimeFormatter.getDay(true));
             case HOUR:
-                hTV.setText(TimeFormatter.getHour(true));
             case MINUTE:
-                mTV.setText(TimeFormatter.getMinute());
+                hmTV.setText(TimeFormatter.getTime(true, false, ":"));
             case SECOND:
                 LOG.v("Time", TimeFormatter.getTime(true, true, ":"));
                 break;

@@ -13,8 +13,10 @@ import com.xmht.lock.core.view.TimeDateWidget;
 import com.xmht.lockair.R;
 
 public class TimeDateWidget6  extends TimeDateWidget {
+    private TextView hTV;
+    private TextView mTV;
     private TextView weekTV;
-    private TextView hmTV;
+    private TextView dateTV;
     
     public TimeDateWidget6(Context context) {
         this(context, null);
@@ -30,15 +32,19 @@ public class TimeDateWidget6  extends TimeDateWidget {
     
     @Override
     protected void setView() {
-        LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_6, this);
+        LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_8, this);
+        hTV = (TextView) findViewById(R.id.time_hour);
+        mTV = (TextView) findViewById(R.id.time_minut);
         weekTV = (TextView) findViewById(R.id.week);
-        hmTV = (TextView) findViewById(R.id.time_h_m);
+        dateTV = (TextView) findViewById(R.id.date);
     }
 
     @Override
     protected void setFont() {
+        Utils.setFontToView(hTV, "fonts/Helvetica-Light.ttf");
+        Utils.setFontToView(mTV, "fonts/Helvetica-Light.ttf");
         Utils.setFontToView(weekTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(hmTV, "fonts/Helvetica-Light.ttf");
+        Utils.setFontToView(dateTV, "fonts/Helvetica-Light.ttf");
     }
     
     @Override
@@ -47,11 +53,13 @@ public class TimeDateWidget6  extends TimeDateWidget {
             case YEAR:
             case MONTH:
             case WEEK:
-                weekTV.setText(TimeFormatter.getWeek(true, false));
+                weekTV.setText(TimeFormatter.getWeek(false, false));
             case DAY:
+                dateTV.setText(TimeFormatter.getDate(false, false, " "));
             case HOUR:
+                hTV.setText(TimeFormatter.getHour(true));
             case MINUTE:
-                hmTV.setText(TimeFormatter.getTime(true, false, ":"));
+                mTV.setText(TimeFormatter.getMinute());
             case SECOND:
                 LOG.v("Time", TimeFormatter.getTime(true, true, ":"));
                 break;
