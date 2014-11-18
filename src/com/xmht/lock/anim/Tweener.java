@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.xmht.lock.core.view.anim;
+package com.xmht.lock.anim;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,12 +27,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
-import android.util.Log;
 import android.view.animation.Interpolator;
 
 public class Tweener {
-    private static final String TAG = "Tweener";
-    private static final boolean DEBUG = false;
 
     ObjectAnimator animator;
     private static HashMap<Object, Tweener> sTweens = new HashMap<Object, Tweener>();
@@ -46,8 +43,6 @@ public class Tweener {
         while (iter.hasNext()) {
             Entry<Object, Tweener> entry = iter.next();
             if (entry.getValue().animator == animator) {
-                if (DEBUG) Log.v(TAG, "Removing tweener " + sTweens.get(entry.getKey())
-                        + " sTweens.size() = " + sTweens.size());
                 iter.remove();
                 break; // an animator can only be attached to one object
             }
@@ -105,7 +100,6 @@ public class Tweener {
                     props.toArray(new PropertyValuesHolder[props.size()]));
             tween = new Tweener(anim);
             sTweens.put(object, tween);
-            if (DEBUG) Log.v(TAG, "Added new Tweener " + tween);
         } else {
             anim = sTweens.get(object).animator;
             replace(props, object); // Cancel all animators for given object
@@ -153,12 +147,6 @@ public class Tweener {
     };
 
     public static void reset() {
-        if (DEBUG) {
-            Log.v(TAG, "Reset()");
-            if (sTweens.size() > 0) {
-                Log.v(TAG, "Cleaning up " + sTweens.size() + " animations");
-            }
-        }
         sTweens.clear();
     }
 

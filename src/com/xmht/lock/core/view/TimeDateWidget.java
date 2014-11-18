@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.xmht.lock.core.data.time.TimeLevel;
 import com.xmht.lock.core.data.time.format.TimeFormatter;
-import com.xmht.lock.core.data.time.observe.TimeLevel;
 import com.xmht.lock.core.data.time.observe.TimeLevelObserver;
 import com.xmht.lock.core.view.listener.SwipeListener;
 

@@ -1,5 +1,5 @@
 
-package com.xmht.lock.core.utils;
+package com.xmht.lock.utils;
 
 import java.lang.ref.SoftReference;
 import java.util.HashMap;

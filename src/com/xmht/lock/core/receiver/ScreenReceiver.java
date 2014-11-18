@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.xmht.lock.core.activity.LockActivity;
-import com.xmht.lock.core.debug.LOG;
+import com.xmht.lock.debug.LOG;
 
 public class ScreenReceiver extends BroadcastReceiver {
 

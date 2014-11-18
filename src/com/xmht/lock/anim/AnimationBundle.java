@@ -1,4 +1,4 @@
-package com.xmht.lock.core.view.anim;
+package com.xmht.lock.anim;
 
 import java.util.ArrayList;
 

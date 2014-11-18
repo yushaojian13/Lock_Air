@@ -8,9 +8,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.xmht.lock.core.debug.LOG;
-import com.xmht.lock.core.utils.Utils;
 import com.xmht.lock.core.view.listener.UnlockListener;
+import com.xmht.lock.debug.LOG;
+import com.xmht.lock.utils.Utils;
 
 public abstract class UnlockView extends View {
     private static int LONG_PRESS_TIME = 500;

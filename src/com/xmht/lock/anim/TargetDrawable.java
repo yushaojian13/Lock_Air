@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.xmht.lock.core.view.common;
+package com.xmht.lock.anim;
 
 import java.io.IOException;
 

@@ -13,13 +13,13 @@ import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
 import com.xmht.lock.core.activity.LockActivity;
-import com.xmht.lock.core.data.TimeDateCenter;
+import com.xmht.lock.core.data.WidgetCenter;
 import com.xmht.lock.core.data.UnlockCenter;
 import com.xmht.lock.core.data.WallpaperCenter;
-import com.xmht.lock.core.utils.SPHelper;
-import com.xmht.lock.core.utils.Utils;
 import com.xmht.lock.core.view.listener.SwipeListener;
 import com.xmht.lock.core.view.listener.UnlockListener;
+import com.xmht.lock.utils.SPHelper;
+import com.xmht.lock.utils.Utils;
 import com.xmht.lockair.R;
 
 public class SlideLayout extends Widget implements SwipeListener, UnlockListener {
@@ -77,7 +77,7 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
             removeView(timeView);
         }
 
-        timeView = TimeDateCenter.get(getContext(), widgetIndex);
+        timeView = WidgetCenter.get(getContext(), widgetIndex);
         timeView.setHorizontalSlideListner(this);
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
@@ -172,6 +172,7 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
 
     @Override
     public void onStart() {
+        timeView.onStart();
     }
 
     @Override
@@ -185,14 +186,14 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
     @Override
     public void leftSwipe() {
         widgetIndex--;
-        widgetIndex = (widgetIndex + TimeDateCenter.getCount()) % TimeDateCenter.getCount();
+        widgetIndex = (widgetIndex + WidgetCenter.getCount()) % WidgetCenter.getCount();
         addTimeView();
     }
 
     @Override
     public void rightSwipe() {
         widgetIndex++;
-        widgetIndex = widgetIndex % TimeDateCenter.getCount();
+        widgetIndex = widgetIndex % WidgetCenter.getCount();
         addTimeView();
     }
 

@@ -1,5 +1,5 @@
 
-package com.xmht.lock.core.debug;
+package com.xmht.lock.debug;
 
 import java.util.regex.Pattern;
 

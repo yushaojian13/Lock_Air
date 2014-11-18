@@ -6,8 +6,8 @@ import java.util.List;
 
 import android.text.format.Time;
 
+import com.xmht.lock.core.data.time.TimeLevel;
 import com.xmht.lock.core.data.time.observe.SecondObserver;
-import com.xmht.lock.core.data.time.observe.TimeLevel;
 import com.xmht.lock.core.data.time.observe.TimeLevelObservable;
 import com.xmht.lock.core.data.time.observe.TimeLevelObserver;
 
@@ -18,37 +18,65 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
     /**
      * Seconds [0-61] (2 leap seconds allowed)
      */
-    public int second;
+    private int second;
 
     /**
      * Minute [0-59]
      */
-    public int minute;
+    private int minute;
 
     /**
      * Hour of day [0-23]
      */
-    public int hour;
+    private int hour;
 
     /**
      * Day of month [1-31]
      */
-    public int day;
+    private int day;
 
     /**
      * Day of week [0-6]
      */
-    public int week;
+    private int week;
 
     /**
      * Month [0-11]
      */
-    public int month;
+    private int month;
 
     /**
      * Year. For example, 1970.
      */
-    public int year;
+    private int year;
+
+    public int getSecond() {
+        return second;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getWeek() {
+        return week;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
 
     @Override
     public void onUpdate() {
@@ -104,6 +132,10 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
         }
     }
 
+    public List<TimeLevelObserver> getObservers() {
+        return observers;
+    }
+
     private List<TimeLevelObserver> observers = new ArrayList<TimeLevelObserver>();
 
     @Override
@@ -111,7 +143,7 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
         if (observers.contains(observer)) {
             return;
         }
-        
+
         observer.onTimeChanged(TimeLevel.YEAR);
         observers.add(observer);
     }
@@ -144,7 +176,7 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
                 }
             }
         }
-        
+
         return instance;
     }
 

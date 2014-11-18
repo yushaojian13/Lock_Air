@@ -1,5 +1,5 @@
 
-package com.xmht.lock.core.utils;
+package com.xmht.lock.utils;
 
 public class MathUtils {
     public static float computeY(float startX, float endX, float startY, float endY, float x) {

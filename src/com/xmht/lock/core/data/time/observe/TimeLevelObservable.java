@@ -1,6 +1,8 @@
 
 package com.xmht.lock.core.data.time.observe;
 
+import com.xmht.lock.core.data.time.TimeLevel;
+
 
 public interface TimeLevelObservable {
     void registerObserver(TimeLevelObserver observer);

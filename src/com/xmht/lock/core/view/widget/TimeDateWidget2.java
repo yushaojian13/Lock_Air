@@ -6,11 +6,11 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
+import com.xmht.lock.core.data.time.TimeLevel;
 import com.xmht.lock.core.data.time.format.TimeFormatter;
-import com.xmht.lock.core.data.time.observe.TimeLevel;
-import com.xmht.lock.core.debug.LOG;
-import com.xmht.lock.core.utils.Utils;
 import com.xmht.lock.core.view.TimeDateWidget;
+import com.xmht.lock.debug.LOG;
+import com.xmht.lock.utils.Utils;
 import com.xmht.lockair.R;
 
 public class TimeDateWidget2 extends TimeDateWidget {
@@ -32,7 +32,7 @@ public class TimeDateWidget2 extends TimeDateWidget {
 
     @Override
     protected void setView() {
-        LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_4, this);
+        LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_2, this);
         hmTV = (TextView) findViewById(R.id.time_h_m);
         weekTV = (TextView) findViewById(R.id.week);
         dateTV = (TextView) findViewById(R.id.date);

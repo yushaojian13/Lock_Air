@@ -13,10 +13,10 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.LinearInterpolator;
 
-import com.xmht.lock.core.utils.Utils;
+import com.xmht.lock.anim.AnimationBundle;
+import com.xmht.lock.anim.Tweener;
 import com.xmht.lock.core.view.UnlockView;
-import com.xmht.lock.core.view.anim.AnimationBundle;
-import com.xmht.lock.core.view.anim.Tweener;
+import com.xmht.lock.utils.Utils;
 import com.xmht.lockair.R;
 
 public class RainUnlockView extends UnlockView {

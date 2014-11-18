@@ -11,7 +11,7 @@ import com.xmht.lock.core.view.widget.TimeDateWidget5;
 import com.xmht.lock.core.view.widget.TimeDateWidget6;
 import com.xmht.lock.core.view.widget.TimeDateWidget7;
 
-public class TimeDateCenter {
+public class WidgetCenter {
     public static TimeDateWidget get(Context context, int style) {
         TimeDateWidget timeDateWidget = null;
         

@@ -1,4 +1,4 @@
-package com.xmht.lock.core.utils;
+package com.xmht.lock.utils;
 
 import java.util.Locale;
 

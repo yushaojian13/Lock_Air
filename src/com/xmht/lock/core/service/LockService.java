@@ -35,14 +35,14 @@ public class LockService extends Service {
         filter.addAction(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_USER_PRESENT);
         registerReceiver(screenReceiver, filter);
-        Log.e("LockAir", "registerScreenReceiver");
+        Log.v("LockAir", "registerScreenReceiver");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver(screenReceiver);
-        Log.e("LockAir", "unregisterScreenReceiver");
+        Log.v("LockAir", "unregisterScreenReceiver");
     }
 
 }
