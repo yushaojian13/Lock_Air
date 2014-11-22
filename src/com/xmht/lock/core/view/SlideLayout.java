@@ -166,7 +166,7 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
 
     private void showAboutDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(R.string.action_about).setMessage(R.string.about_us);
+        builder.setTitle(R.string.app_name).setMessage(R.string.about_us);
         builder.create().show();
     }
 
