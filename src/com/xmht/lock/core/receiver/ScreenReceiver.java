@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.xmht.lock.core.activity.LockActivity;
+import com.xmht.lock.core.service.LockService;
 import com.xmht.lock.debug.LOG;
 
 public class ScreenReceiver extends BroadcastReceiver {
@@ -19,7 +20,7 @@ public class ScreenReceiver extends BroadcastReceiver {
         } else if (action.equals(Intent.ACTION_USER_PRESENT)
                 || action.equals(Intent.ACTION_SCREEN_ON)) {
         } else if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
-            onScreenOff(context);
+            context.startService(new Intent(context, LockService.class));
         }
     }
 
