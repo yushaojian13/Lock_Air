@@ -211,7 +211,6 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
     private void showUnlockChooserDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(R.string.select_unlock);
-//        builder.setView(new UnlockChooser(getContext()));
         builder.setItems(R.array.array_unlock, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (which == unlockIndex) {
