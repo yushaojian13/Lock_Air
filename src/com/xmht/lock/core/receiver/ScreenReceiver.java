@@ -15,11 +15,11 @@ public class ScreenReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         LOG.e(action);
-        if (action.equals(Intent.ACTION_SCREEN_OFF)) {
+        if (Intent.ACTION_SCREEN_OFF.equals(action)) {
             onScreenOff(context);
-        } else if (action.equals(Intent.ACTION_USER_PRESENT)
-                || action.equals(Intent.ACTION_SCREEN_ON)) {
-        } else if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
+        } else if (Intent.ACTION_USER_PRESENT.equals(action)
+                || Intent.ACTION_SCREEN_ON.equals(action)) {
+        } else if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
             context.startService(new Intent(context, LockService.class));
         }
     }

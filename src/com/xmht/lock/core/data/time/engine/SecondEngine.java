@@ -5,17 +5,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 
 import com.xmht.lock.core.data.time.observe.SecondObservable;
 import com.xmht.lock.core.data.time.observe.SecondObserver;
+import com.xmht.lock.debug.LOG;
 
 public class SecondEngine extends Handler implements SecondObservable {
     private static final int START = 0;
+    private static int count;
 
     private List<SecondObserver> observers = new ArrayList<SecondObserver>();
 
     private boolean refresh;
+
+    public SecondEngine() {
+        super();
+        init();
+    }
+
+    public SecondEngine(Callback callback) {
+        super(callback);
+        init();
+    }
+    
+    public SecondEngine(Looper looper) {
+        super(looper);
+        init();
+    }
+
+    public SecondEngine(Looper looper, Callback callback) {
+        super(looper, callback);
+        init();
+    }
+    
+    private void init() {
+        count++;
+        LOG.e("instantiated " + count + " times");
+    }
 
     @Override
     public void handleMessage(Message msg) {
