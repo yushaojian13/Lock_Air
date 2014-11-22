@@ -34,7 +34,7 @@ public class TimeDateWidget7  extends TimeDateWidget {
         LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_7, this);
         monthTV = (TextView) findViewById(R.id.month);
         dayTV = (TextView) findViewById(R.id.day);
-        hmTV = (TextView) findViewById(R.id.time_h_m);
+        hmTV = (TextView) findViewById(R.id.time);
     }
 
     @Override

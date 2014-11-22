@@ -39,8 +39,8 @@ public class TimeDateAppWidget extends AppWidgetProvider {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_time_date_3);
         remoteViews.setTextViewText(R.id.date, TimeFormatter.getDate(false, false, " "));
         remoteViews.setTextViewText(R.id.week, TimeFormatter.getWeek(true, false));
-        remoteViews.setTextViewText(R.id.time_am_pm, TimeFormatter.getAM(true));
-        remoteViews.setTextViewText(R.id.time_h_m, TimeFormatter.getTime(false, false, ":"));
+        remoteViews.setTextViewText(R.id.am_pm, TimeFormatter.getAM(true));
+        remoteViews.setTextViewText(R.id.time, TimeFormatter.getTime(false, false, ":"));
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         
         for (int appID : idSet) {

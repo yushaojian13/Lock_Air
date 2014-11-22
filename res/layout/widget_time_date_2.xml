@@ -6,7 +6,7 @@
     android:layout_gravity="center" >
 
     <TextView
-        android:id="@id/time_h_m"
+        android:id="@id/time"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

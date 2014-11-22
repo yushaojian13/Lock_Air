@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item name="call_tip" type="id"/>
-    <item name="msg_tip" type="id"/>
-    <item name="battery_tip" type="id"/>
-    <item name="battery_tv" type="id"/>
-    <item name="low_battery" type="id"/>
-    <item name="net_tip" type="id"/>
-    <item name="signal_level" type="id"/>
-    <item name="time_all" type="id"/>
-    <item name="time_h_m" type="id"/>
-    <item name="time_hour" type="id"/>
-    <item name="time_minut" type="id"/>
-    <item name="time_second" type="id"/>
-    <item name="time_am_pm" type="id"/>
+    <item name="time" type="id"/>
+    <item name="hour" type="id"/>
+    <item name="minut" type="id"/>
+    <item name="second" type="id"/>
+    <item name="am_pm" type="id"/>
     <item name="week" type="id"/>
     <item name="date" type="id"/>
     <item name="day" type="id"/>
     <item name="month" type="id"/>
     <item name="year" type="id"/>
-    <item name="time_weiget" type="id"/>
-    <item name="tip_msg" type="id"/>
-    <item name="touchTip" type="id"/>
-    <item name="styleCircle" type="id"/>
-    <item name="fragment_container" type="id"/>
 
 </resources>
