@@ -39,6 +39,14 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        
+        <receiver android:name="com.xmht.lock.core.appwidget.TimeDateAppWidget">
+            <intent-filter >
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.xmht.lock.air.tick"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" />
+        </receiver>
     </application>
 
 </manifest>
