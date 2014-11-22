@@ -2,25 +2,24 @@
 package com.xmht.lock.core.view.unlock;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.animation.LinearInterpolator;
 
-import com.xmht.lock.core.utils.Utils;
-import com.xmht.lock.core.view.anim.AnimationBundle;
-import com.xmht.lock.core.view.anim.Tweener;
-import com.xmht.lock.core.view.common.TargetDrawable;
+import com.xmht.lock.anim.AnimationBundle;
+import com.xmht.lock.anim.Tweener;
+import com.xmht.lock.core.view.UnlockView;
+import com.xmht.lock.utils.Utils;
 import com.xmht.lockair.R;
 
-public class RainUnlockView extends View {
-    private TargetDrawable arrowDrawable;
+public class RainUnlockView extends UnlockView {
     private Paint paint;
     private String text;
     private float textSize;
@@ -33,69 +32,83 @@ public class RainUnlockView extends View {
     private static final int ANIMATION_DURATION = 100;
     private AnimationBundle animationBundle = new AnimationBundle();
 
-    private float scaleX;
-    private float scaleY;
+    private static final int MARK_COLOR = 0x66FFFFFF;
+
+    private static final int TEXT_COLOR = 0xFF363636;
 
     public RainUnlockView(Context context) {
-        super(context);
+        this(context, null);
+    }
+    
+    public RainUnlockView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public RainUnlockView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        textSize = Utils.dip2px(getContext(), 18);
         paint = new Paint();
         paint.setAntiAlias(true);
-
-        scaleX = getResources().getDisplayMetrics().widthPixels / 720f;
-        scaleY = getResources().getDisplayMetrics().heightPixels / 1280f;
-
-        textSize = Utils.dip2px(getContext(), 18);
+        paint.setTextSize(textSize);
+        
         textPaddingLeft = Utils.dip2px(getContext(), 25);
-        textColor = 0xFF363636;
+        textColor = TEXT_COLOR;
         text = context.getResources().getString(R.string.unlock);
-
-        waterMarkHeight = 98 * scaleY;
-        waterMarkWidth = 490 * scaleX;
-        waterMarkColor = 0x66FFFFFF;
-
+        
+        waterMarkColor = MARK_COLOR;
+        
         setBackgroundColor(Color.TRANSPARENT);
     }
     
-    public void setDrawable(Drawable drawable) {
-        arrowDrawable = new TargetDrawable();
-        arrowDrawable.setDrawable(drawable);
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        waterMarkHeight = getHeight();
+        waterMarkWidth = getWidth() * 0.7f;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawWaterMark(canvas);
-        canvas.translate(offsetX, 0);
-        drawText(canvas, text);
+        drawText(canvas);
         drawTarget(canvas);
-    }
-
-    private void drawText(Canvas canvas, String text) {
-        paint.setColor(textColor);
-        paint.setTextSize(textSize);
-        canvas.save(Canvas.MATRIX_SAVE_FLAG);
-        canvas.translate(textPaddingLeft, waterMarkHeight / 2 - (paint.descent() - paint.ascent())
-                * 0.5f);
-        canvas.drawText(text, 0, -paint.ascent() * 1.1f, paint);
-        canvas.restore();
     }
 
     private void drawWaterMark(Canvas canvas) {
         paint.setColor(waterMarkColor);
         canvas.save(Canvas.MATRIX_SAVE_FLAG);
-        canvas.translate(-waterMarkHeight / 2, 0);
+        float tX = -waterMarkHeight / 2;
+        float tY = 0;
+        canvas.translate(tX, tY);
         RectF rectF = new RectF(0, 0, waterMarkWidth + waterMarkHeight / 2 + offsetX,
                 waterMarkHeight);
         canvas.drawRoundRect(rectF, waterMarkHeight / 2, waterMarkHeight / 2, paint);
         canvas.restore();
     }
 
+    private void drawText(Canvas canvas) {
+        paint.setColor(textColor);
+        canvas.save(Canvas.MATRIX_SAVE_FLAG);
+        float tX = textPaddingLeft + offsetX;
+        float tY = waterMarkHeight / 2 - (paint.descent() - paint.ascent()) * 0.5f;
+        canvas.translate(tX, tY);
+        canvas.drawText(text, 0, -paint.ascent() * 1.05f, paint);
+        canvas.restore();
+    }
+
     private void drawTarget(Canvas canvas) {
         canvas.save(Canvas.MATRIX_SAVE_FLAG);
-        canvas.translate(textPaddingLeft + waterMarkHeight + paint.measureText(text),
-                waterMarkHeight / 2);
-        canvas.scale(scaleX, scaleX);
-        arrowDrawable.draw(canvas);
+        float tX = textPaddingLeft + waterMarkHeight / 2 + paint.measureText(text) + offsetX;
+        float tY = waterMarkHeight / 2;
+        canvas.translate(tX, tY);
+        float textHeight = paint.descent() - paint.ascent();
+        double angle = Math.PI * 100 / 180;
+        float deltaX = (float) (textHeight * 0.45f * Math.cos(angle * 0.5));
+        float deltaY = (float) (textHeight * 0.45f * Math.sin(angle * 0.5));
+        paint.setStrokeWidth(2.5f);
+        canvas.drawLine(0, -deltaY, deltaX, 0, paint);
+        canvas.drawLine(deltaX, 0, 0, +deltaY, paint);
         canvas.restore();
     }
 
@@ -112,12 +125,13 @@ public class RainUnlockView extends View {
     private float downX = 0f;
     private float moveX = 0f;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 downX = event.getX();
-                return true;
+                break;
             case MotionEvent.ACTION_MOVE:
                 if (event.getY() > waterMarkHeight) {
                     break;
@@ -125,29 +139,28 @@ public class RainUnlockView extends View {
                 moveX = event.getX();
                 offsetX = (moveX > downX) ? (moveX - downX) : 0;
                 invalidate();
-                return true;
+                break;
             case MotionEvent.ACTION_UP:
                 if (waterMarkWidth + offsetX > getWidth()) {
-                    if (unlockListener != null) {
-                        unlockListener.onUnlock();
-                    }
+                    unlock();
+                } else {
+                    reset();
                 }
-                reset();
-                return true;
+                break;
         }
-        
         return super.onTouchEvent(event);
     }
 
-    public void setTranslationX(float translationX) {
+    public void setWaterMarkX(float translationX) {
         offsetX = translationX;
     }
 
-    private void reset() {
+    @Override
+    protected void reset() {
         animationBundle.cancel();
         animationBundle.add(Tweener.to(this, ANIMATION_DURATION,
                 "ease", new LinearInterpolator(),
-                "translationX", new float[] {
+                "waterMarkX", new float[] {
                         offsetX, 0f
                 },
                 "onUpdate", mUpdateListener
@@ -161,15 +174,9 @@ public class RainUnlockView extends View {
             invalidate();
         }
     };
-
-    private UnlockListener unlockListener;
-
-    public void setUnlockListener(UnlockListener listener) {
-        unlockListener = listener;
-    }
-
-    public interface UnlockListener {
-        public void onUnlock();
-    }
+    
+    protected int getDefaultHeightDenominator() {
+        return 13;
+    };
 
 }

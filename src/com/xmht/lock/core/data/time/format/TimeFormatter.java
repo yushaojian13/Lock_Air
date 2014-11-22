@@ -5,7 +5,7 @@ import java.util.Locale;
 
 import com.xmht.lock.core.data.time.engine.TimeRaw;
 import com.xmht.lock.core.data.time.observe.TimeLevelObserver;
-import com.xmht.lock.core.debug.LOG;
+import com.xmht.lock.debug.LOG;
 
 public class TimeFormatter {
     public static final String[] MONTH = {
@@ -59,15 +59,15 @@ public class TimeFormatter {
     }
 
     public static String getMonth(boolean full, boolean upper) {
-        if (timeRaw.month < 1 || timeRaw.month > 12) {
+        if (timeRaw.getMonth() < 1 || timeRaw.getMonth() > 12) {
             return "ERROR";
         }
 
         String monthStr;
         if (full) {
-            monthStr = MONTH_FULL[timeRaw.month];
+            monthStr = MONTH_FULL[timeRaw.getMonth()];
         } else {
-            monthStr = MONTH[timeRaw.month];
+            monthStr = MONTH[timeRaw.getMonth()];
         }
 
         if (upper) {
@@ -78,23 +78,23 @@ public class TimeFormatter {
     }
 
     public static String getDay(boolean has2digits) {
-        if (timeRaw.day < 10 && has2digits) {
-            return "0" + timeRaw.day;
+        if (timeRaw.getDay() < 10 && has2digits) {
+            return "0" + timeRaw.getDay();
         }
 
-        return "" + timeRaw.day;
+        return "" + timeRaw.getDay();
     }
 
     public static String getWeek(boolean full, boolean upper) {
-        if (timeRaw.week < 0 || timeRaw.week > 6) {
+        if (timeRaw.getWeek() < 0 || timeRaw.getWeek() > 6) {
             return "ERROR";
         }
 
         String weekStr;
         if (full) {
-            weekStr = WEEK_FULL[timeRaw.week];
+            weekStr = WEEK_FULL[timeRaw.getWeek()];
         } else {
-            weekStr = WEEK[timeRaw.week];
+            weekStr = WEEK[timeRaw.getWeek()];
         }
 
         if (upper) {
@@ -105,7 +105,7 @@ public class TimeFormatter {
     }
 
     public static boolean isAM() {
-        if (timeRaw.hour < 12) {
+        if (timeRaw.getHour() < 12) {
             return true;
         }
 
@@ -114,46 +114,48 @@ public class TimeFormatter {
 
     public static String getAM(boolean upper) {
         String am = "pm";
-        if (timeRaw.hour < 12) {
+        if (isAM()) {
             am = "am";
         }
 
         if (upper) {
-            return am.toUpperCase(Locale.ENGLISH);
+            am = am.toUpperCase(Locale.ENGLISH);
         }
 
         return am;
     }
 
     public static String getHour(boolean is24) {
-        if (timeRaw.hour < 0 || timeRaw.hour > 23) {
+        if (timeRaw.getHour() < 0 || timeRaw.getHour() > 23) {
             return "ERROR";
         }
 
-        if (!is24 && timeRaw.hour > 12) {
-            timeRaw.hour = timeRaw.hour - 12;
+        int hour = timeRaw.getHour();
+        // [13-23]
+        if (!is24 && timeRaw.getHour() > 12) {
+            hour = timeRaw.getHour() - 12; // [1-11]
         }
 
-        if (timeRaw.hour < 10) {
-            return "0" + timeRaw.hour;
+        if (hour < 10) {
+            return "0" + hour;
         } else {
-            return "" + timeRaw.hour;
+            return "" + hour;
         }
     }
 
     public static String getMinute() {
-        if (timeRaw.minute < 10) {
-            return "0" + timeRaw.minute;
+        if (timeRaw.getMinute() < 10) {
+            return "0" + timeRaw.getMinute();
         } else {
-            return "" + timeRaw.minute;
+            return "" + timeRaw.getMinute();
         }
     }
 
     public static String getSecond() {
-        if (timeRaw.second < 10) {
-            return "0" + timeRaw.second;
+        if (timeRaw.getSecond() < 10) {
+            return "0" + timeRaw.getSecond();
         } else {
-            return "" + timeRaw.second;
+            return "" + timeRaw.getSecond();
         }
     }
 

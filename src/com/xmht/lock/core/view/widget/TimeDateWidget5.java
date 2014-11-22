@@ -1,24 +1,24 @@
-
 package com.xmht.lock.core.view.widget;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
+import com.xmht.lock.core.data.time.TimeLevel;
 import com.xmht.lock.core.data.time.format.TimeFormatter;
-import com.xmht.lock.core.data.time.observe.TimeLevel;
-import com.xmht.lock.core.debug.LOG;
-import com.xmht.lock.core.utils.Utils;
 import com.xmht.lock.core.view.TimeDateWidget;
+import com.xmht.lock.debug.LOG;
+import com.xmht.lock.utils.Utils;
 import com.xmht.lockair.R;
 
-public class TimeDateWidget5 extends TimeDateWidget {
-    private TextView dateTV;
+public class TimeDateWidget5  extends TimeDateWidget {
+    private TextView hTV;
+    private TextView mTV;
     private TextView weekTV;
-    private TextView hmTV;
-    private TextView amTV;
-
+    private TextView dateTV;
+    
     public TimeDateWidget5(Context context) {
         this(context, null);
     }
@@ -26,41 +26,41 @@ public class TimeDateWidget5 extends TimeDateWidget {
     public TimeDateWidget5(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
+    
     public TimeDateWidget5(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-
+    
     @Override
     protected void setView() {
         LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_5, this);
-        hmTV = (TextView) findViewById(R.id.time_h_m);
-        amTV = (TextView) findViewById(R.id.time_am_pm);
+        hTV = (TextView) findViewById(R.id.time_hour);
+        mTV = (TextView) findViewById(R.id.time_minut);
         weekTV = (TextView) findViewById(R.id.week);
         dateTV = (TextView) findViewById(R.id.date);
     }
 
     @Override
     protected void setFont() {
-        Utils.setFontToView(dateTV, "fonts/Helvetica-Light.ttf");
+        Utils.setFontToView(hTV, "fonts/Helvetica-Light.ttf", Typeface.BOLD);
+        Utils.setFontToView(mTV, "fonts/Helvetica-Light.ttf");
         Utils.setFontToView(weekTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(hmTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(amTV, "fonts/Helvetica-Light.ttf");
+        Utils.setFontToView(dateTV, "fonts/Helvetica-Light.ttf");
     }
-
+    
     @Override
     public void onTimeChanged(TimeLevel level) {
         switch (level) {
             case YEAR:
             case MONTH:
             case WEEK:
-                weekTV.setText(TimeFormatter.getWeek(true, false));
+                weekTV.setText(TimeFormatter.getWeek(false, false));
             case DAY:
                 dateTV.setText(TimeFormatter.getDate(false, false, " "));
             case HOUR:
-                amTV.setText(TimeFormatter.getAM(true));
+                hTV.setText(TimeFormatter.getHour(true));
             case MINUTE:
-                hmTV.setText(TimeFormatter.getTime(false, false, ":"));
+                mTV.setText(TimeFormatter.getMinute());
             case SECOND:
                 LOG.v("Time", TimeFormatter.getTime(true, true, ":"));
                 break;
@@ -68,5 +68,5 @@ public class TimeDateWidget5 extends TimeDateWidget {
                 break;
         }
     }
-
+    
 }
