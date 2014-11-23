@@ -2,51 +2,57 @@
 package com.xmht.lock.core.service;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.xmht.lock.core.data.time.engine.TickEngine;
+import com.xmht.lock.core.data.time.observe.SecondObserver;
 import com.xmht.lock.core.receiver.ScreenReceiver;
+import com.xmht.lock.debug.LOG;
 
-public class LockService extends Service {
+public class LockService extends Service implements SecondObserver {
     private ScreenReceiver screenReceiver;
+    private TickEngine tickEngine;
 
-    private static final int UPDATE_TIME = 1000;
+    public static final String EXTRA_RECEIVER = "extra_receiver";
+    public static final String EXTRA_TICK = "extra_tick";
+    
     public static final String ACTION_TICK = "com.xmht.lock.air.tick";
-
-    private UpdateThread updateThread;
+    
+    public static void action(Context context, boolean startReceiver, boolean startTick) {
+        Intent intent = new Intent(context, LockService.class);
+        intent.putExtra(LockService.EXTRA_RECEIVER, startReceiver);
+        intent.putExtra(LockService.EXTRA_TICK, startTick);
+        context.startService(intent);
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        registerScreenReceiver();
-    }
-
-    private void startTick() {
-        if (updateThread == null) {
-            updateThread = new UpdateThread();
-            updateThread.start();
-        }
+        LOG.v("");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent.hasExtra("app_widget")) {
-            boolean start = intent.getBooleanExtra("app_widget", false);
-            if (start) {
-                startTick();
-            } else {
-                stopTick();
-            }
+        boolean startReceiver = intent.hasExtra(EXTRA_RECEIVER) && intent.getBooleanExtra(EXTRA_RECEIVER, false);
+        
+        if (startReceiver) {
+            registerScreenReceiver();
+        } else {
+            unregisterReceiver(screenReceiver);
         }
+        
+        boolean startTick = intent.hasExtra(EXTRA_TICK) && intent.getBooleanExtra(EXTRA_TICK, false);
+        if (startTick) {
+            startTick();
+        } else {
+            stopTick();
+        }
+        
         return START_STICKY;
-    }
-
-    private void stopTick() {
-        if (updateThread != null) {
-            updateThread.interrupt();
-        }
     }
 
     @Override
@@ -55,6 +61,10 @@ public class LockService extends Service {
     }
 
     private void registerScreenReceiver() {
+        if (screenReceiver != null) {
+            return;
+        }
+        
         screenReceiver = new ScreenReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -68,24 +78,41 @@ public class LockService extends Service {
     public void onDestroy() {
         super.onDestroy();
         stopTick();
+        unregisterScreenReceiver();
+        LOG.v("");
+    }
+
+    private void unregisterScreenReceiver() {
+        if (screenReceiver == null) {
+            return;
+        }
+        
         unregisterReceiver(screenReceiver);
         Log.v("LockAir", "unregisterScreenReceiver");
     }
 
-    private class UpdateThread extends Thread {
-        @Override
-        public void run() {
-            super.run();
-            try {
-                while (true) {
-                    Intent updateIntent = new Intent(ACTION_TICK);
-                    sendBroadcast(updateIntent);
-                    Thread.sleep(UPDATE_TIME);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    private void startTick() {
+        if (tickEngine != null) {
+            return;
         }
+        
+        tickEngine = TickEngine.getInstance();
+        tickEngine.registerObservers(this);
+        tickEngine.start();
+    }
+    
+    private void stopTick() {
+        if (tickEngine == null) {
+            return;
+        }
+        
+        tickEngine.stop();
+        tickEngine.removeObservers(this);
+    }
+
+    @Override
+    public void onUpdate() {
+        sendBroadcast(new Intent(ACTION_TICK));
     }
 
 }

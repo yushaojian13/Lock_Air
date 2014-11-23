@@ -14,7 +14,6 @@ import com.xmht.lockair.R;
 
 public class LockActivity extends Activity {
     private SlideLayout slideLayout;
-
     private ExitReceiver exitReceiver;
 
     public static final String ACTION_UNLOCK = "com.xmht.lock.air.unlock";
@@ -26,7 +25,7 @@ public class LockActivity extends Activity {
         setContentView(R.layout.activity_lock);
         slideLayout = (SlideLayout) findViewById(R.id.root);
         exitReceiver = new ExitReceiver();
-        startService(new Intent(this, LockService.class));
+        LockService.action(this, true, true);
     }
 
     @Override
@@ -57,7 +56,7 @@ public class LockActivity extends Activity {
 
     private void exit() {
         finish();
-        stopService(new Intent(this, LockService.class));
+        LockService.action(this, false, true);
     }
 
     private class ExitReceiver extends BroadcastReceiver {

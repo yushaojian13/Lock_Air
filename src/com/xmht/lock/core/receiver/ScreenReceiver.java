@@ -23,7 +23,7 @@ public class ScreenReceiver extends BroadcastReceiver {
         } else if (Intent.ACTION_USER_PRESENT.equals(action)
                 || Intent.ACTION_SCREEN_ON.equals(action)) {
         } else if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
-            context.startService(new Intent(context, LockService.class));
+            LockService.action(context, true, true);
         }
     }
 
