@@ -31,6 +31,8 @@
 
         <service android:name="com.xmht.lock.core.service.LockService" >
         </service>
+        <service android:name="com.xmht.lock.core.service.AppWidgetService" >
+        </service>
 
         <receiver
             android:name="com.xmht.lock.core.receiver.ScreenReceiver"
@@ -39,14 +41,24 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        
-        <receiver android:name="com.xmht.lock.core.appwidget.TimeDateAppWidget">
-            <intent-filter >
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.xmht.lock.air.tick"/>
+        <receiver android:name="com.xmht.lock.core.appwidget.TimeDateAppWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.xmht.lock.air.tick" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/app_widget_1" />
+        </receiver>
+        <receiver android:name="com.xmht.lock.core.appwidget.TimeDateAppWidget2" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_2" />
         </receiver>
     </application>
 

@@ -1,3 +1,4 @@
+
 package com.xmht.lock.core.data.time.engine;
 
 import java.util.ArrayList;
@@ -10,62 +11,67 @@ import com.xmht.lock.core.data.time.observe.SecondObservable;
 import com.xmht.lock.core.data.time.observe.SecondObserver;
 
 public class TickEngine implements SecondObservable {
-    
+
     private static final int START = 0;
 
     private List<SecondObserver> observers = new ArrayList<SecondObserver>();
 
     private boolean refresh;
-    
+
     private Handler handler;
-    
+
     private static TickEngine instance;
-    
-    private TickEngine(){}
-    
+
+    private TickEngine() {
+    }
+
     public static TickEngine getInstance() {
         if (instance == null) {
             synchronized (TimeRaw.class) {
                 if (instance == null) {
-                    init();
+                    instance = new TickEngine();
                 }
             }
         }
 
         return instance;
     }
-    
-    private static void init() {
-        instance = new TickEngine();
-        instance.handler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
 
-                if (msg.what == START && instance.refresh) {
-                    instance.notifyObservers();
-                    sendEmptyMessageDelayed(START, 1000);
-                }
-            }
-        };
-    }
-
-    public void start() {
+    private void start() {
         if (refresh) {
             return;
         }
 
         refresh = true;
+        handler = new TickHandler();
         handler.sendEmptyMessage(START);
     }
-
-    public void stop() {
-        refresh = false;
-    }
     
+    private static class TickHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if (msg.what == START && instance.refresh) {
+                instance.notifyObservers();
+                sendEmptyMessageDelayed(START, 1000);
+            }
+        }
+    };
+
+    private void stop() {
+        refresh = false;
+        handler = null;
+    }
+
     @Override
     public void registerObservers(SecondObserver observer) {
+        if (observer == null && observers.contains(observer)) {
+            return;
+        }
+
         observers.add(observer);
+        start();
     }
 
     @Override
@@ -73,6 +79,9 @@ public class TickEngine implements SecondObservable {
         int i = observers.indexOf(observer);
         if (i >= 0) {
             observers.remove(i);
+        }
+        if (observers.size() == 0) {
+            stop();
         }
     }
 

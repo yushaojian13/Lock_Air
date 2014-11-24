@@ -25,7 +25,7 @@ public class LockActivity extends Activity {
         setContentView(R.layout.activity_lock);
         slideLayout = (SlideLayout) findViewById(R.id.root);
         exitReceiver = new ExitReceiver();
-        LockService.action(this, true, true);
+        startService(new Intent(this, LockService.class));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class LockActivity extends Activity {
 
     private void exit() {
         finish();
-        LockService.action(this, false, true);
+        stopService(new Intent(this, LockService.class));
     }
 
     private class ExitReceiver extends BroadcastReceiver {

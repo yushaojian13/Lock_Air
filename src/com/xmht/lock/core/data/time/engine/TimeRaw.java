@@ -192,9 +192,11 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
         instance.minute = instance.time.minute;
         instance.second = instance.time.second;
 
-        SecondEngine timeEngine = new SecondEngine();
-        timeEngine.registerObservers(instance);
-        timeEngine.start();
+//        SecondEngine timeEngine = new SecondEngine();
+//        timeEngine.registerObservers(instance);
+//        timeEngine.start();
+        TickEngine tickEngine = TickEngine.getInstance();
+        tickEngine.registerObservers(instance);
     }
 
 }
