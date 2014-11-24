@@ -1,6 +1,8 @@
 package com.xmht.lock.core.view.widget;
 
 import android.content.Context;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.TextView;
@@ -10,6 +12,7 @@ import com.xmht.lock.core.data.time.format.TimeFormatter;
 import com.xmht.lock.core.view.TimeDateWidget;
 import com.xmht.lock.debug.LOG;
 import com.xmht.lock.utils.Utils;
+import com.xmht.lock.utils.XMTagHandler;
 import com.xmht.lockair.R;
 
 public class TimeDateWidget1 extends TimeDateWidget {
@@ -41,7 +44,7 @@ public class TimeDateWidget1 extends TimeDateWidget {
     protected void setFont() {
         Utils.setFontToView(weekTV, "fonts/Helvetica-Light.ttf");
         Utils.setFontToView(dateTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(timeHM, "fonts/Helvetica-Light.ttf");
+//        Utils.setFontToView(timeHM, "fonts/Helvetica-Light.ttf");
     }
     
     @Override
@@ -56,7 +59,9 @@ public class TimeDateWidget1 extends TimeDateWidget {
             case HOUR:
             case MINUTE:
             case SECOND:
-                timeHM.setText(TimeFormatter.getTime(true, true, ":"));
+                SpannableStringBuilder builder =  new SpannableStringBuilder(Html.fromHtml("<body>123213====<ft-1>12312312312</ft-1></body>", null, new XMTagHandler(this.getContext())));
+//                timeHM.setText(TimeFormatter.getTime(true, true, ":"));
+                timeHM.setText(builder);
                 LOG.v("Time", TimeFormatter.getTime(true, true, ":"));
                 break;
             default:

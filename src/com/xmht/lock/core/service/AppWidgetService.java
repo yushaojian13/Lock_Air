@@ -6,6 +6,8 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.IBinder;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
 import android.widget.RemoteViews;
 
 import com.xmht.lock.core.appwidget.TimeDateAppWidget2;
@@ -13,6 +15,7 @@ import com.xmht.lock.core.data.time.engine.TickEngine;
 import com.xmht.lock.core.data.time.format.TimeFormatter;
 import com.xmht.lock.core.data.time.observe.SecondObserver;
 import com.xmht.lock.debug.LOG;
+import com.xmht.lock.utils.XMTagHandler;
 import com.xmht.lockair.R;
 
 public class AppWidgetService extends Service implements SecondObserver {
@@ -58,10 +61,13 @@ public class AppWidgetService extends Service implements SecondObserver {
 
     @Override
     public void onUpdate() {
+        
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.widget_time_date_3);
+        SpannableStringBuilder builder =  new SpannableStringBuilder(Html.fromHtml("<body>123213====<ft-1>12312312312</ft-1></body>", null, new XMTagHandler(this)));
         remoteViews.setTextViewText(R.id.date, TimeFormatter.getDate(false, false, " "));
         remoteViews.setTextViewText(R.id.week, TimeFormatter.getWeek(false, false));
-        remoteViews.setTextViewText(R.id.time, TimeFormatter.getTime(false, true, ":"));
+//        remoteViews.setTextViewText(R.id.time, TimeFormatter.getTime(false, true, ":"));
+        remoteViews.setTextViewText(R.id.time, builder);
         remoteViews.setTextViewText(R.id.am_pm, TimeFormatter.getAM(true));
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
 
