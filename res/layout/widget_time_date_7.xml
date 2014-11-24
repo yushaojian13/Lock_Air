@@ -44,7 +44,7 @@
         android:background="@android:color/darker_gray" />
 
     <TextView
-        android:id="@id/time_h_m"
+        android:id="@id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"

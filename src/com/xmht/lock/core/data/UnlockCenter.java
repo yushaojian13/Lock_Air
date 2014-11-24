@@ -19,10 +19,10 @@ public class UnlockCenter {
         
         switch (style) {
             case 1:
-                unlockView = new SlideUnlockView(context);
+                unlockView = new RainUnlockView(context);
                 break;
             case 2:
-                unlockView = new RainUnlockView(context);
+                unlockView = new SlideUnlockView(context);
                 break;
         }
         return unlockView;
