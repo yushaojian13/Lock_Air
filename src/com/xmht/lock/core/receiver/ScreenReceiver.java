@@ -10,16 +10,19 @@ import com.xmht.lock.core.service.LockService;
 import com.xmht.lock.debug.LOG;
 
 public class ScreenReceiver extends BroadcastReceiver {
+    private static int count;
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        count++;
+        LOG.e("instantiated " + count + " times");
         String action = intent.getAction();
-        LOG.e(action);
-        if (action.equals(Intent.ACTION_SCREEN_OFF)) {
+        LOG.v(action);
+        if (Intent.ACTION_SCREEN_OFF.equals(action)) {
             onScreenOff(context);
-        } else if (action.equals(Intent.ACTION_USER_PRESENT)
-                || action.equals(Intent.ACTION_SCREEN_ON)) {
-        } else if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
+        } else if (Intent.ACTION_USER_PRESENT.equals(action)
+                || Intent.ACTION_SCREEN_ON.equals(action)) {
+        } else if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
             context.startService(new Intent(context, LockService.class));
         }
     }

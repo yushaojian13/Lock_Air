@@ -35,6 +35,9 @@ public class TimeFormatter {
     static {
         timeRaw = TimeRaw.getInstance();
     }
+    
+    private TimeFormatter() {
+    }
 
     public static void register(TimeLevelObserver observer) {
         if (observer == null) {
