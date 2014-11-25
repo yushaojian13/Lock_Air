@@ -164,12 +164,12 @@ public class TimeFormatter {
 
     public static String getTime(boolean is24, boolean showSecond, String split) {
         StringBuilder sb = new StringBuilder();
-        sb.append(TimeFormatter.getHour(is24));
+        sb.append(getHour(is24));
         sb.append(split);
-        sb.append(TimeFormatter.getMinute());
+        sb.append(getMinute());
         if (showSecond) {
             sb.append(split);
-            sb.append(TimeFormatter.getSecond());
+            sb.append(getSecond());
         }
         return sb.toString();
     }

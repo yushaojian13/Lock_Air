@@ -5,4 +5,5 @@
     android:layout_height="match_parent"
     android:background="#66ffffff"
     android:scaleType="centerInside"
+    android:clickable="true"
     android:contentDescription="@string/app_name" />
