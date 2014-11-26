@@ -10,6 +10,7 @@ import com.xmht.lock.core.data.time.TimeLevel;
 import com.xmht.lock.core.data.time.observe.SecondObserver;
 import com.xmht.lock.core.data.time.observe.TimeLevelObservable;
 import com.xmht.lock.core.data.time.observe.TimeLevelObserver;
+import com.xmht.lock.debug.LOG;
 
 public class TimeRaw implements TimeLevelObservable, SecondObserver {
 
@@ -140,12 +141,15 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
 
     @Override
     public void registerObserver(TimeLevelObserver observer) {
-        if (observers.contains(observer)) {
+        if (observer == null || observers.contains(observer)) {
             return;
         }
 
         observer.onTimeChanged(TimeLevel.YEAR);
         observers.add(observer);
+        
+        TickEngine tickEngine = TickEngine.getInstance();
+        tickEngine.registerObservers(instance);
     }
 
     @Override
@@ -154,12 +158,18 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
         if (i >= 0) {
             observers.remove(i);
         }
+        
+        if (observers.size() == 0) {
+            TickEngine tickEngine = TickEngine.getInstance();
+            tickEngine.removeObservers(instance);
+        }
     }
 
     @Override
     public void notifyObservers(TimeLevel level) {
         for (TimeLevelObserver observer : observers) {
             observer.onTimeChanged(level);
+            LOG.v(observer.getClass().getSimpleName());
         }
     }
 
@@ -191,10 +201,6 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
         instance.hour = instance.time.hour;
         instance.minute = instance.time.minute;
         instance.second = instance.time.second;
-
-//        SecondEngine timeEngine = new SecondEngine();
-//        timeEngine.registerObservers(instance);
-//        timeEngine.start();
         TickEngine tickEngine = TickEngine.getInstance();
         tickEngine.registerObservers(instance);
     }

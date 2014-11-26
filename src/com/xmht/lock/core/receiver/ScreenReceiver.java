@@ -11,12 +11,9 @@ import com.xmht.lock.core.service.LockService;
 import com.xmht.lock.debug.LOG;
 
 public class ScreenReceiver extends BroadcastReceiver {
-    private static int count;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        count++;
-        LOG.e("instantiated " + count + " times");
         String action = intent.getAction();
         LOG.v(action);
         if (Intent.ACTION_SCREEN_OFF.equals(action)) {

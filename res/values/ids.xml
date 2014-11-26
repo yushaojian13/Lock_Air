@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item name="time" type="id"/>
-    <item name="hour" type="id"/>
-    <item name="minut" type="id"/>
     <item name="second" type="id"/>
+    <item name="minute" type="id"/>
+    <item name="hour" type="id"/>
     <item name="am_pm" type="id"/>
+    <item name="time" type="id"/>
     <item name="week" type="id"/>
-    <item name="date" type="id"/>
     <item name="day" type="id"/>
     <item name="month" type="id"/>
+    <item name="date" type="id"/>
     <item name="year" type="id"/>
 
 </resources>

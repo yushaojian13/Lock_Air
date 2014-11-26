@@ -4,8 +4,6 @@ package com.xmht.lock.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.xmht.lock.debug.LOG;
-
 public class SPHelper {
     private static SharedPreferences sp;
 
@@ -19,6 +17,5 @@ public class SPHelper {
     
     public static void set(String key, int value) {
         sp.edit().putInt(key, value).commit();
-        LOG.v("put " + key + ": " + value);
     }
 }

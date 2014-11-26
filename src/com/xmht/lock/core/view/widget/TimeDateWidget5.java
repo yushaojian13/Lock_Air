@@ -35,7 +35,7 @@ public class TimeDateWidget5  extends TimeDateWidget {
     protected void setView() {
         LayoutInflater.from(getContext()).inflate(R.layout.widget_time_date_5, this);
         hTV = (TextView) findViewById(R.id.hour);
-        mTV = (TextView) findViewById(R.id.minut);
+        mTV = (TextView) findViewById(R.id.minute);
         weekTV = (TextView) findViewById(R.id.week);
         dateTV = (TextView) findViewById(R.id.date);
     }
