@@ -27,7 +27,7 @@ public class TimeFormatter {
 
     public static final String[] WEEK_FULL = {
             "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-            "Friday", "Saturday",
+            "Friday", "Saturday"
     };
 
     private static TimeRaw timeRaw;
