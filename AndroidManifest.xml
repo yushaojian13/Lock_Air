@@ -17,6 +17,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <!--
         <activity
             android:name="com.xmht.lock.core.activity.LockActivity"
             android:label="@string/app_name"
@@ -29,6 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        -->
+
         <activity android:name="com.xmht.lock.core.activity.WidgetClockConfigActivity" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -37,7 +41,7 @@
 
         <service android:name="com.xmht.lock.core.service.LockService" >
         </service>
-        <service android:name="com.xmht.lock.core.service.AppWidgetService" >
+        <service android:name="com.xmht.lock.core.appwidget.service.AppWidgetService" >
         </service>
 
         <receiver

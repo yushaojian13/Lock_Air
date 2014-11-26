@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.xmht.lock.core.activity.LockActivity;
-import com.xmht.lock.core.appwidget.AppWidgetUtils;
+import com.xmht.lock.core.appwidget.utils.AppWidgetUtils;
 import com.xmht.lock.core.service.LockService;
 import com.xmht.lock.debug.LOG;
 

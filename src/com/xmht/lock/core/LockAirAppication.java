@@ -2,7 +2,7 @@ package com.xmht.lock.core;
 
 import android.app.Application;
 
-import com.xmht.lock.core.appwidget.AppWidgetUtils;
+import com.xmht.lock.core.appwidget.utils.AppWidgetUtils;
 import com.xmht.lock.debug.LOG;
 import com.xmht.lock.utils.SPHelper;
 

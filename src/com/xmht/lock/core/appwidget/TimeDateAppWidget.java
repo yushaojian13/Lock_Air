@@ -1,6 +1,8 @@
 
 package com.xmht.lock.core.appwidget;
 
+import com.xmht.lock.core.appwidget.utils.AppWidgetUtils;
+
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 

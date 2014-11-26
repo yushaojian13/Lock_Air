@@ -17,7 +17,12 @@
         <item>Style 2</item>
     </string-array>
     
-    <string-array name="array_week">
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="am">上午</string>
+    <string name="pm">下午</string>
+    
+    <string-array name="array_week_short">
         <item>一</item>
         <item>二</item>
         <item>三</item>
@@ -25,6 +30,26 @@
         <item>五</item>
         <item>六</item>
         <item>日</item>
+    </string-array>
+    
+    <string-array name="array_week_normal">
+        <item>周日</item>
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+    </string-array>
+    
+    <string-array name="array_week_full">
+        <item>星期日</item>
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
     </string-array>
 
 </resources>
