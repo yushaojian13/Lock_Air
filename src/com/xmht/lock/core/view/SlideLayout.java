@@ -178,9 +178,9 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
     @Override
     public void onStop() {
         timeView.onStop();
-        SPHelper.set("wallpaper", wallpaperIndex);
-        SPHelper.set("time", widgetIndex);
-        SPHelper.set("unlock", unlockIndex);
+        SPHelper.put("wallpaper", wallpaperIndex);
+        SPHelper.put("time", widgetIndex);
+        SPHelper.put("unlock", unlockIndex);
     }
     
     @Override

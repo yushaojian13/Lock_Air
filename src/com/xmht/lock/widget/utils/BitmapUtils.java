@@ -1,5 +1,5 @@
 
-package com.xmht.lock.core.appwidget.utils;
+package com.xmht.lock.widget.utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -36,23 +36,16 @@ public class BitmapUtils {
 
     /**
      * call in a work thread
+     * 
+     * @throws IOException
      */
-    public static Bitmap loadCurBitmap(Context context, String fileName) {
+    public static Bitmap loadCurBitmap(Context context, String fileName) throws IOException {
         FileInputStream fis = null;
         Bitmap bitmap = null;
-        try {
-            fis = context.openFileInput(fileName);
-            bitmap = BitmapFactory.decodeStream(fis);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            if (fis != null) {
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        fis = context.openFileInput(fileName);
+        bitmap = BitmapFactory.decodeStream(fis);
+        if (fis != null) {
+            fis.close();
         }
 
         return bitmap;

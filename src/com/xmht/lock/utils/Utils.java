@@ -27,7 +27,7 @@ public class Utils {
     
     private final static HashMap<String, SoftReference<Typeface>> TYPEFACE_CACHE = new HashMap<String, SoftReference<Typeface>>();
 
-    public static Typeface createTypeface(Context context, String fontPath) {
+    public static Typeface createTypeface(Context context, String fontPath, boolean cache) {
         if (TYPEFACE_CACHE.containsKey(fontPath)) {
             return TYPEFACE_CACHE.get(fontPath).get();
         }
@@ -50,7 +50,7 @@ public class Utils {
             } catch (Exception e) {
             }
         }
-        if (tf != null) {
+        if (tf != null && cache) {
             TYPEFACE_CACHE.put(fontPath, new SoftReference<Typeface>(tf));
         }
         return tf;
@@ -61,7 +61,7 @@ public class Utils {
     }
     
     public static void setFontToView(TextView textView, String fontPath, int typefaceStyle) {
-        Typeface tf = createTypeface(textView.getContext(), fontPath);
+        Typeface tf = createTypeface(textView.getContext(), fontPath, true);
         textView.setTypeface(tf, typefaceStyle);
     }
 }

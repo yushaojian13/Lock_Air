@@ -35,7 +35,7 @@ public class TimeFormatter {
     static {
         timeRaw = TimeRaw.getInstance();
     }
-    
+
     private TimeFormatter() {
     }
 
@@ -57,54 +57,38 @@ public class TimeFormatter {
         timeRaw.unregisterObserver(observer);
     }
 
-    public static String getDate(boolean full, boolean upper, String split) {
-        return getMonth(full, upper) + split + getDay(false);
+    public static String getSecond() {
+        if (timeRaw.getSecond() < 10) {
+            return "0" + timeRaw.getSecond();
+        } else {
+            return "" + timeRaw.getSecond();
+        }
     }
 
-    public static String getMonth(boolean full, boolean upper) {
-        if (timeRaw.getMonth() < 1 || timeRaw.getMonth() > 12) {
+    public static String getMinute() {
+        if (timeRaw.getMinute() < 10) {
+            return "0" + timeRaw.getMinute();
+        } else {
+            return "" + timeRaw.getMinute();
+        }
+    }
+
+    public static String getHour(boolean is24) {
+        if (timeRaw.getHour() < 0 || timeRaw.getHour() > 23) {
             return "ERROR";
         }
 
-        String monthStr;
-        if (full) {
-            monthStr = MONTH_FULL[timeRaw.getMonth()];
+        int hour = timeRaw.getHour();
+        // [13-23]
+        if (!is24 && timeRaw.getHour() > 12) {
+            hour = timeRaw.getHour() - 12; // [1-11]
+        }
+
+        if (hour < 10) {
+            return "0" + hour;
         } else {
-            monthStr = MONTH[timeRaw.getMonth()];
+            return "" + hour;
         }
-
-        if (upper) {
-            monthStr = monthStr.toUpperCase(Locale.ENGLISH);
-        }
-
-        return monthStr;
-    }
-
-    public static String getDay(boolean has2digits) {
-        if (timeRaw.getDay() < 10 && has2digits) {
-            return "0" + timeRaw.getDay();
-        }
-
-        return "" + timeRaw.getDay();
-    }
-
-    public static String getWeek(boolean full, boolean upper) {
-        if (timeRaw.getWeek() < 0 || timeRaw.getWeek() > 6) {
-            return "ERROR";
-        }
-
-        String weekStr;
-        if (full) {
-            weekStr = WEEK_FULL[timeRaw.getWeek()];
-        } else {
-            weekStr = WEEK[timeRaw.getWeek()];
-        }
-
-        if (upper) {
-            weekStr = weekStr.toUpperCase(Locale.ENGLISH);
-        }
-
-        return weekStr;
     }
 
     public static boolean isAM() {
@@ -128,40 +112,6 @@ public class TimeFormatter {
         return am;
     }
 
-    public static String getHour(boolean is24) {
-        if (timeRaw.getHour() < 0 || timeRaw.getHour() > 23) {
-            return "ERROR";
-        }
-
-        int hour = timeRaw.getHour();
-        // [13-23]
-        if (!is24 && timeRaw.getHour() > 12) {
-            hour = timeRaw.getHour() - 12; // [1-11]
-        }
-
-        if (hour < 10) {
-            return "0" + hour;
-        } else {
-            return "" + hour;
-        }
-    }
-
-    public static String getMinute() {
-        if (timeRaw.getMinute() < 10) {
-            return "0" + timeRaw.getMinute();
-        } else {
-            return "" + timeRaw.getMinute();
-        }
-    }
-
-    public static String getSecond() {
-        if (timeRaw.getSecond() < 10) {
-            return "0" + timeRaw.getSecond();
-        } else {
-            return "" + timeRaw.getSecond();
-        }
-    }
-
     public static String getTime(boolean is24, boolean showSecond, String split) {
         StringBuilder sb = new StringBuilder();
         sb.append(getHour(is24));
@@ -173,4 +123,55 @@ public class TimeFormatter {
         }
         return sb.toString();
     }
+
+    public static String getDay(boolean has2digits) {
+        if (timeRaw.getDay() < 10 && has2digits) {
+            return "0" + timeRaw.getDay();
+        }
+
+        return "" + timeRaw.getDay();
+    }
+
+    public static String getMonth(boolean full, boolean upper) {
+        if (timeRaw.getMonth() < 1 || timeRaw.getMonth() > 12) {
+            return "ERROR";
+        }
+
+        String monthStr;
+        if (full) {
+            monthStr = MONTH_FULL[timeRaw.getMonth()];
+        } else {
+            monthStr = MONTH[timeRaw.getMonth()];
+        }
+
+        if (upper) {
+            monthStr = monthStr.toUpperCase(Locale.ENGLISH);
+        }
+
+        return monthStr;
+    }
+
+    public static String getDate(boolean full, boolean upper, String split) {
+        return getMonth(full, upper) + split + getDay(false);
+    }
+
+    public static String getWeek(boolean full, boolean upper) {
+        if (timeRaw.getWeek() < 0 || timeRaw.getWeek() > 6) {
+            return "ERROR";
+        }
+
+        String weekStr;
+        if (full) {
+            weekStr = WEEK_FULL[timeRaw.getWeek()];
+        } else {
+            weekStr = WEEK[timeRaw.getWeek()];
+        }
+
+        if (upper) {
+            weekStr = weekStr.toUpperCase(Locale.ENGLISH);
+        }
+
+        return weekStr;
+    }
+
 }

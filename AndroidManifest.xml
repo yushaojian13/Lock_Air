@@ -12,13 +12,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.xmht.lock.core.LockAirAppication"
+        android:name="com.xmht.lock.LockAirAppication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
-        <!--
         <activity
             android:name="com.xmht.lock.core.activity.LockActivity"
             android:label="@string/app_name"
@@ -31,9 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        -->
-
-        <activity android:name="com.xmht.lock.core.activity.WidgetClockConfigActivity" >
+        <activity android:name="com.xmht.lock.widget.activity.ConfigActivity" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -41,7 +37,7 @@
 
         <service android:name="com.xmht.lock.core.service.LockService" >
         </service>
-        <service android:name="com.xmht.lock.core.appwidget.service.AppWidgetService" >
+        <service android:name="com.xmht.lock.widget.service.AppWidgetService" >
         </service>
 
         <receiver
@@ -51,7 +47,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.xmht.lock.core.appwidget.TimeDateAppWidget" >
+        <receiver android:name="com.xmht.lock.widget.TimeDateAppWidget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="com.xmht.lock.air.tick" />

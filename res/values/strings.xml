@@ -6,22 +6,37 @@
     <string name="action_exit">Exit</string>
     <string name="unlock">Unlock</string>
     <string name="select_unlock">Select unlock style</string>
+    
+    <!-- widget -->
+    <string name="widget_style_digit">Digit</string>
+    <string name="widget_style_new">New</string>
+    <string name="widget_style_cicle">Circle</string>
+    <string name="widget_style_layer">Layer</string>
+    <string name="widget_primary_color1">Write</string>
+    <string name="widget_primary_color2">Red</string>
+    <string name="widget_secondary_color1">Write</string>
+    <string name="widget_secondary_color2">Green</string>
+    <string name="widget_font1">UnidreamLED</string>
+    <string name="widget_font2">CaviarDreams</string>
+    <string name="widget_default">Default</string>
+
+    <string name="widget_shadow">Shadow</string>
+    <string name="enable">Enable</string>
 
     <string-array name="menu">
         <item>About</item>
         <item>Exit</item>
     </string-array>
-    
     <string-array name="array_unlock">
         <item>Style 1</item>
         <item>Style 2</item>
     </string-array>
-    
+
     <string name="month">月</string>
     <string name="day">日</string>
     <string name="am">上午</string>
     <string name="pm">下午</string>
-    
+
     <string-array name="array_week_short">
         <item>一</item>
         <item>二</item>
@@ -31,7 +46,6 @@
         <item>六</item>
         <item>日</item>
     </string-array>
-    
     <string-array name="array_week_normal">
         <item>周日</item>
         <item>周一</item>
@@ -41,7 +55,6 @@
         <item>周五</item>
         <item>周六</item>
     </string-array>
-    
     <string-array name="array_week_full">
         <item>星期日</item>
         <item>星期一</item>

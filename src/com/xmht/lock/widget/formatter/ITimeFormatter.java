@@ -1,6 +1,8 @@
-package com.xmht.lock.core.appwidget.formatter;
+package com.xmht.lock.widget.formatter;
 
-public interface ITimeFormater {
+import android.text.format.Time;
+
+public interface ITimeFormatter {
     public String getSecond();
     public String getMinute();
     public String getHour();
@@ -12,4 +14,5 @@ public interface ITimeFormater {
     public String getDate();
     public String getWeek();
     public String getYear();
+    public void setTime(Time time);
 }
