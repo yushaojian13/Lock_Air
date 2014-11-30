@@ -42,7 +42,11 @@ public class CircleAppWidgetBitmap extends AppWidgetBitmap {
         Rect weekRect = computeRect(paint, weekText, weekSize);
         Rect dateRect = computeRect(paint, dateText, dateSize);
 
-        float circleRadius = timeRect.width() * 0.75f;
+        float cr1 = timeRect.width();
+        float cr2 = weekRect.width();
+        float cr3 = timeRect.height() + space + weekRect.height();
+        float circleRadius = Math.max(Math.max(cr1, cr2), cr3) * 0.75f;
+        
         float bw1 = dateRect.width() * 3f + space * 2;
         float bw2 = circleRadius * 3f;
         float bh1 = circleRadius * 2f + space + dateRect.height();
@@ -56,13 +60,13 @@ public class CircleAppWidgetBitmap extends AppWidgetBitmap {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(ringWidth);
         paint.setColor(0xff3a98a4);
-        float circleX = bitmapWidth / 2;
-        float circleY = circleRadius + ringWidth + bitmapHeight * 0.05f;
+        float circleX = bitmap.getWidth() / 2;
+        float circleY = circleRadius + ringWidth + bitmap.getHeight() * 0.05f;
         canvas.drawCircle(circleX, circleY, circleRadius, paint);
 
         paint.setStrokeWidth(lineWidth);
-        float lineStartX = bitmapWidth * 0.05f;
-        float lineStartY = circleRadius * 2 + ringWidth + lineWidth + bitmapHeight * 0.05f;
+        float lineStartX = bitmap.getWidth() * 0.05f;
+        float lineStartY = circleRadius * 2 + ringWidth + lineWidth + bitmap.getHeight() * 0.05f;
         float lineEndX = bitmap.getWidth() * 0.95f;
         float lineEndY = lineStartY;
         canvas.drawLine(lineStartX, lineStartY, lineEndX, lineEndY, paint);
@@ -76,7 +80,7 @@ public class CircleAppWidgetBitmap extends AppWidgetBitmap {
         paint.setColor(primaryColor);
         float timeYOffset = (circleRadius * 2 - timeRect.height() - weekRect.height()) / 2;
         float timeX = -timeRect.left + (bitmap.getWidth() - timeRect.width()) / 2;
-        float timeY = -timeRect.top - space + timeYOffset + bitmapHeight * 0.05f + ringWidth;
+        float timeY = -timeRect.top - space + timeYOffset + bitmap.getHeight() * 0.05f + ringWidth;
         canvas.drawText(timeText, timeX, timeY, paint);
 
         if (showShadow) {
@@ -85,7 +89,7 @@ public class CircleAppWidgetBitmap extends AppWidgetBitmap {
         paint.setTextSize(weekSize);
         paint.setColor(secondaryColor);
         float weekX = -weekRect.left + (bitmap.getWidth() - weekRect.width()) / 2;
-        float weekY = timeRect.height() - weekRect.top + space + timeYOffset + bitmapHeight * 0.05f
+        float weekY = timeRect.height() - weekRect.top + space + timeYOffset + bitmap.getHeight() * 0.05f
                 + ringWidth;
         canvas.drawText(weekText, weekX, weekY, paint);
 
@@ -114,7 +118,7 @@ public class CircleAppWidgetBitmap extends AppWidgetBitmap {
         dateText = timeFormatter.getDate();
         paint.setColor(Color.GRAY);
         dateX = -dateRect.left + bitmap.getWidth() * 0.95f - dateRect.width();
-        dateY = bitmapHeight * 0.95f - dateRect.height() - dateRect.top;
+        dateY = bitmap.getHeight() * 0.95f - dateRect.height() - dateRect.top;
         canvas.drawText(dateText, dateX, dateY, paint);
 
         timeFormatter.setTime(time);

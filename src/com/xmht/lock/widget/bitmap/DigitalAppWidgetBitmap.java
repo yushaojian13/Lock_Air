@@ -61,7 +61,6 @@ public class DigitalAppWidgetBitmap extends AppWidgetBitmap {
         float timeDelta = dw1 > dw2 ? 0 : (dw2 - dw1) * 0.5f;
         Bitmap bitmap = Bitmap.createBitmap(bitmapWidth, bitmapHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        canvas.drawColor(0x66ffffff);
 
         paint.setTextSize(weekSize);
         float weekX;
@@ -81,7 +80,7 @@ public class DigitalAppWidgetBitmap extends AppWidgetBitmap {
                 paint.setShadowLayer(0f, 0f, 0f, 0x55000000);
                 paint.setColor(Color.GRAY);
             }
-            weekX = bitmapWidth * 0.05f + -weekRects[i].left + (space + weekDelta) * i + offset;
+            weekX = bitmap.getWidth() * 0.05f + -weekRects[i].left + (space + weekDelta) * i + offset;
             weekY = bitmap.getHeight() * 0.05f - weekRects[i].top
                     + (weekMaxHeight - weekRects[i].height()) * 0.5f;
             canvas.drawText(weekArray[i], weekX, weekY, paint);
@@ -92,7 +91,7 @@ public class DigitalAppWidgetBitmap extends AppWidgetBitmap {
         }
         paint.setTextSize(timeSize);
         paint.setColor(primaryColor);
-        float timeX = bitmapWidth * 0.05f - timeRect.left + timeDelta;
+        float timeX = bitmap.getWidth() * 0.05f - timeRect.left + timeDelta;
         float timeY = bitmap.getHeight() * 0.05f - weekMaxTop + space - timeRect.top;
         canvas.drawText(timeText, timeX, timeY, paint);
 

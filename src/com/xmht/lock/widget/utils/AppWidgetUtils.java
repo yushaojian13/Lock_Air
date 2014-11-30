@@ -50,6 +50,10 @@ public class AppWidgetUtils {
 
     public static void showBitmap(Context context, Bitmap bitmap) {
         LOG.v("");
+        if (bitmap == null) {
+            return;
+        }
+        
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.app_widget);
         remoteViews.setImageViewBitmap(R.id.iv_time, bitmap);
         
