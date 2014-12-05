@@ -21,8 +21,16 @@ public class Utils {
         return context.getResources().getDisplayMetrics().density;
     }
     
+    public static float getScaledDensity(Context context) {
+        return context.getResources().getDisplayMetrics().scaledDensity;
+    }
+    
     public static float dip2px(Context context, float dp) {
         return dp * getDensity(context);
+    }
+    
+    public static float px2dip(Context context, float px) {
+        return px / getDensity(context);
     }
     
     private final static HashMap<String, SoftReference<Typeface>> TYPEFACE_CACHE = new HashMap<String, SoftReference<Typeface>>();

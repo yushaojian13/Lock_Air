@@ -32,7 +32,7 @@ public abstract class AppWidgetBitmap {
 
     public AppWidgetBitmap(Context context, Time time) {
         showShadow = SPHelper.get(SP_WIDGET_SHADOW, false);
-        scaleFactor = SPHelper.get(SP_WIDGET_SCALE, 1.5f);
+        scaleFactor = SPHelper.get(SP_WIDGET_SCALE, 2.0f);
         primaryColor = SPHelper.get(SP_WIDGET_COLOR1, Color.WHITE);
         secondaryColor = SPHelper.get(SP_WIDGET_COLOR2, Color.WHITE);
         font = SPHelper.get(SP_WIDGET_FONT, "fonts/Helvetica-Light.ttf");

@@ -35,6 +35,8 @@ public class AppWidgetService extends Service {
 
     private AppWidgetBitmap curAppWidgetBitmap;
 
+    public static final String EXTRA_UPDATE_DELAY_NOT = "update_delay";
+
     public static final String EXTRA_WIDGET_STYLE = "widget_style";
     public static final String EXTRA_WIDGET_SHADOW = "widget_shadow";
     public static final String EXTRA_WIDGET_COLORS = "widget_colors";
@@ -56,7 +58,7 @@ public class AppWidgetService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        boolean flag = false;
+        boolean delayNot = false;
 
         if (intent != null && intent.getExtras() != null) {
             Bundle extras = intent.getExtras();
@@ -65,27 +67,25 @@ public class AppWidgetService extends Service {
             boolean hasFont = extras.containsKey(EXTRA_WIDGET_FONT);
             boolean hasColors = extras.containsKey(EXTRA_WIDGET_COLORS);
             boolean hasShadow = extras.containsKey(EXTRA_WIDGET_SHADOW);
-            boolean hasScale = extras.containsKey(EXTRA_WIDGET_SCALE);
 
-            flag = hasStyle && hasShadow && hasColors && hasScale && hasFont;
-            if (flag) {
+            delayNot = hasStyle && hasShadow && hasColors && hasFont;
+            if (delayNot) {
                 AppWidgetBitmap newAppWidgetBitmap = getStyle(extras);
                 getFont(newAppWidgetBitmap, extras);
                 getColors(newAppWidgetBitmap, extras);
                 getShadow(newAppWidgetBitmap, extras);
-                getScale(newAppWidgetBitmap, extras);
-                curAppWidgetBitmap = newAppWidgetBitmap;
                 String style = extras.getString(EXTRA_WIDGET_STYLE, null);
                 if (newAppWidgetBitmap != null && style != null) {
+                    curAppWidgetBitmap = newAppWidgetBitmap;
                     SPHelper.put(SP_WIDGET_STYLE, style);
                     onUpdate(false);
                 }
+            } else {
+                delayNot = extras.getBoolean(EXTRA_UPDATE_DELAY_NOT);
             }
         }
 
-        if (!flag) {
-            onUpdate(true);
-        }
+        onUpdate(!delayNot);
 
         return START_STICKY;
     }
@@ -144,15 +144,6 @@ public class AppWidgetService extends Service {
 
         boolean shadowOn = extras.getBoolean(EXTRA_WIDGET_SHADOW, false);
         appWidgetBitmap.showShadow(shadowOn);
-    }
-
-    private void getScale(AppWidgetBitmap appWidgetBitmap, Bundle extras) {
-        if (appWidgetBitmap == null) {
-            return;
-        }
-
-        float scale = extras.getFloat(EXTRA_WIDGET_SCALE, 1.0f);
-        appWidgetBitmap.setScaleFactor(scale);
     }
 
     private Bitmap curBitmap;
@@ -225,7 +216,7 @@ public class AppWidgetService extends Service {
 
     @Override
     public void onDestroy() {
-        LOG.v("");
+        LOG.e("");
         super.onDestroy();
         unregisterScreenReceiver();
     }

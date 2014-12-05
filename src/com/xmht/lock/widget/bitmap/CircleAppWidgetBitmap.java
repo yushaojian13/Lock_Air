@@ -1,6 +1,7 @@
 
 package com.xmht.lock.widget.bitmap;
 
+import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.formatter.CircleTimeFormatter;
 import com.xmht.lock.widget.formatter.ITimeFormatter;
 
@@ -122,7 +123,7 @@ public class CircleAppWidgetBitmap extends AppWidgetBitmap {
         canvas.drawText(dateText, dateX, dateY, paint);
 
         timeFormatter.setTime(time);
-
+        LOG.v("");
         return bitmap;
     }
 }

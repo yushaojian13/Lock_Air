@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.format.Time;
 
+import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.formatter.ITimeFormatter;
 import com.xmht.lock.widget.formatter.NewTimeFormatter;
 
@@ -86,7 +87,7 @@ public class NewAppWidgetBitmap extends AppWidgetBitmap {
             amY = weekRect.height() + space - timeRect.top + bitmap.getHeight() * 0.05f;
             canvas.drawText(am, amX, amY, paint);
         }
-
+        LOG.v("");
         return bitmap;
     }
 

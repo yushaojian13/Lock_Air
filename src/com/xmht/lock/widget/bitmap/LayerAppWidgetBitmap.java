@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.format.Time;
 
+import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.formatter.ITimeFormatter;
 import com.xmht.lock.widget.formatter.LayerTimeFormatter;
 
@@ -94,6 +95,7 @@ public class LayerAppWidgetBitmap extends AppWidgetBitmap {
         float dateY = hourRect.height() + space + minuteRect.height() + space - dateRect.top
                 + bitmap.getHeight() * 0.05f;
         canvas.drawText(date, dateX, dateY, paint);
+        LOG.v("");
         return bitmap;
     }
 

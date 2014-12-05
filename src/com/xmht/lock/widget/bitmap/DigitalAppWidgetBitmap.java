@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.format.Time;
 
+import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.formatter.DigitalTimeFormatter;
 import com.xmht.lock.widget.formatter.ITimeFormatter;
 import com.xmht.lockair.R;
@@ -94,7 +95,7 @@ public class DigitalAppWidgetBitmap extends AppWidgetBitmap {
         float timeX = bitmap.getWidth() * 0.05f - timeRect.left + timeDelta;
         float timeY = bitmap.getHeight() * 0.05f - weekMaxTop + space - timeRect.top;
         canvas.drawText(timeText, timeX, timeY, paint);
-
+        LOG.v("");
         return bitmap;
     }
 }

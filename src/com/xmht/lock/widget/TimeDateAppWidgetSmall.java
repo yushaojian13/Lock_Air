@@ -1,19 +1,19 @@
 
 package com.xmht.lock.widget;
 
-import com.xmht.lock.debug.LOG;
-import com.xmht.lock.widget.utils.AppWidgetUtils;
-
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 
-public class TimeDateAppWidget extends AppWidgetProvider {
+import com.xmht.lock.debug.LOG;
+import com.xmht.lock.widget.utils.AppWidgetUtils;
+
+public class TimeDateAppWidgetSmall extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
         LOG.v("");
         super.onEnabled(context);
-        if (AppWidgetUtils.checkExist(context, TimeDateAppWidgetSmall.class)) {
+        if (AppWidgetUtils.checkExist(context, TimeDateAppWidget.class)) {
             AppWidgetUtils.onceUpdateWidget(context);
             return;
         }
@@ -25,7 +25,7 @@ public class TimeDateAppWidget extends AppWidgetProvider {
     public void onDisabled(Context context) {
         LOG.v("");
         super.onDisabled(context);
-        if (AppWidgetUtils.checkExist(context, TimeDateAppWidgetSmall.class)) {
+        if (AppWidgetUtils.checkExist(context, TimeDateAppWidget.class)) {
             return;
         }
         

@@ -100,7 +100,7 @@ public class LOG {
             String methodName = e.getMethodName();
             String className = e.getClassName();
             String[] splits = className.split(Pattern.quote("."));
-            return String.format("%s %s ==> %s", splits[splits.length - 1], methodName, msg);
+            return String.format("%s %s %s ==> %s", Thread.currentThread().getId(), splits[splits.length - 1], methodName, msg);
         }
         return msg.toString();
     }
