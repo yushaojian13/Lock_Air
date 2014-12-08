@@ -23,13 +23,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
+        </activity>
+        <activity android:name="com.xmht.lock.demo.activity.DemoActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.xmht.lock.demo.activity.DemoActivity" >
         </activity>
         <activity android:name="com.xmht.lock.widget.activity.ConfigActivity" >
             <intent-filter>
