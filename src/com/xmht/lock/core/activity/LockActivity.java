@@ -11,6 +11,7 @@ import android.os.Bundle;
 import com.xmht.lock.core.service.LockService;
 import com.xmht.lock.core.view.SlideLayout;
 import com.xmht.lockair.R;
+import com.ysj.tools.debug.LOG;
 
 public class LockActivity extends Activity {
     private SlideLayout slideLayout;
@@ -30,6 +31,7 @@ public class LockActivity extends Activity {
 
     @Override
     protected void onStart() {
+        LOG.v("");
         super.onStart();
         slideLayout.onStart();
         registerExitReceiver();
@@ -44,6 +46,7 @@ public class LockActivity extends Activity {
 
     @Override
     protected void onStop() {
+        LOG.v("");
         super.onStop();
         slideLayout.onStop();
         unregisterReceiver(exitReceiver);

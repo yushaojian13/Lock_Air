@@ -9,8 +9,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.xmht.lock.core.view.listener.UnlockListener;
-import com.xmht.lock.debug.LOG;
-import com.xmht.lock.utils.Utils;
+import com.ysj.tools.debug.LOG;
+import com.ysj.tools.utils.Displays;
 
 public abstract class UnlockView extends View {
     private static int LONG_PRESS_TIME = 500;
@@ -54,8 +54,8 @@ public abstract class UnlockView extends View {
             case MotionEvent.ACTION_MOVE:
                 moveX = event.getRawX() - downX;
                 moveY = event.getRawY() - downY;
-                if (moveX * moveX + moveY * moveY > Utils
-                        .getDW(getContext()) * Utils.getDW(getContext()) * 0.01) {
+                if (moveX * moveX + moveY * moveY > Displays
+                        .getDW(getContext()) * Displays.getDW(getContext()) * 0.01) {
                     handler.removeCallbacks(longPressed);
                 }
                 break;
@@ -97,7 +97,7 @@ public abstract class UnlockView extends View {
         if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
         } else {
-            result = Utils.getDW(getContext());
+            result = Displays.getDW(getContext());
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }
@@ -114,7 +114,7 @@ public abstract class UnlockView extends View {
         if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
         } else {
-            result = Utils.getDH(getContext()) / getDefaultHeightDenominator();
+            result = Displays.getDH(getContext()) / getDefaultHeightDenominator();
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }

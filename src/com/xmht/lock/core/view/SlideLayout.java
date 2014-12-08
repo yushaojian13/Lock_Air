@@ -13,14 +13,15 @@ import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
 import com.xmht.lock.core.activity.LockActivity;
-import com.xmht.lock.core.data.WidgetCenter;
 import com.xmht.lock.core.data.UnlockCenter;
 import com.xmht.lock.core.data.WallpaperCenter;
+import com.xmht.lock.core.data.WidgetCenter;
 import com.xmht.lock.core.view.listener.SwipeListener;
 import com.xmht.lock.core.view.listener.UnlockListener;
-import com.xmht.lock.utils.SPHelper;
-import com.xmht.lock.utils.Utils;
 import com.xmht.lockair.R;
+import com.ysj.tools.debug.LOG;
+import com.ysj.tools.utils.Displays;
+import com.ysj.tools.utils.SPHelper;
 
 public class SlideLayout extends Widget implements SwipeListener, UnlockListener {
     private int screenHeight;
@@ -51,7 +52,7 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
         widgetIndex = SPHelper.get("time", 0);
         unlockIndex = SPHelper.get("unlock", 0);
 
-        screenHeight = Utils.getDH(getContext());
+        screenHeight = Displays.getDH(getContext());
         
         addWallpaper();
         addTimeView();
@@ -172,11 +173,13 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
 
     @Override
     public void onStart() {
+        LOG.v("");
         timeView.onStart();
     }
 
     @Override
     public void onStop() {
+        LOG.v("");
         timeView.onStop();
         SPHelper.put("wallpaper", wallpaperIndex);
         SPHelper.put("time", widgetIndex);

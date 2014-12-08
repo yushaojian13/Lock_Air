@@ -8,9 +8,9 @@ import android.widget.TextView;
 import com.xmht.lock.core.data.time.TimeLevel;
 import com.xmht.lock.core.data.time.format.TimeFormatter;
 import com.xmht.lock.core.view.TimeDateWidget;
-import com.xmht.lock.debug.LOG;
-import com.xmht.lock.utils.Utils;
 import com.xmht.lockair.R;
+import com.ysj.tools.debug.LOG;
+import com.ysj.tools.utils.Fonts;
 
 public class TimeDateWidget7  extends TimeDateWidget {
     private TextView monthTV;
@@ -39,9 +39,9 @@ public class TimeDateWidget7  extends TimeDateWidget {
 
     @Override
     protected void setFont() {
-        Utils.setFontToView(monthTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(dayTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(hmTV, "fonts/Helvetica-Light.ttf");
+        Fonts.setFontToView(monthTV, "fonts/Helvetica-Light.ttf");
+        Fonts.setFontToView(dayTV, "fonts/Helvetica-Light.ttf");
+        Fonts.setFontToView(hmTV, "fonts/Helvetica-Light.ttf");
     }
     
     @Override

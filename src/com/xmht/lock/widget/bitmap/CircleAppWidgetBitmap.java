@@ -1,10 +1,6 @@
 
 package com.xmht.lock.widget.bitmap;
 
-import com.xmht.lock.debug.LOG;
-import com.xmht.lock.widget.formatter.CircleTimeFormatter;
-import com.xmht.lock.widget.formatter.ITimeFormatter;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,6 +8,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.format.Time;
+
+import com.xmht.lock.widget.formatter.CircleTimeFormatter;
+import com.xmht.lock.widget.formatter.ITimeFormatter;
+import com.ysj.tools.debug.LOG;
 
 public class CircleAppWidgetBitmap extends AppWidgetBitmap {
 

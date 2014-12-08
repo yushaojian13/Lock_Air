@@ -4,8 +4,8 @@ package com.xmht.lock.widget;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 
-import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.utils.AppWidgetUtils;
+import com.ysj.tools.debug.LOG;
 
 public class TimeDateAppWidgetSmall extends AppWidgetProvider {
 

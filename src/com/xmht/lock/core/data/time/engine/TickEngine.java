@@ -9,7 +9,7 @@ import android.os.Message;
 
 import com.xmht.lock.core.data.time.observe.SecondObservable;
 import com.xmht.lock.core.data.time.observe.SecondObserver;
-import com.xmht.lock.debug.LOG;
+import com.ysj.tools.debug.LOG;
 
 public class TickEngine implements SecondObservable {
 
@@ -68,6 +68,7 @@ public class TickEngine implements SecondObservable {
 
     @Override
     public void registerObservers(SecondObserver observer) {
+        LOG.v("");
         if (observer == null || observers.contains(observer)) {
             return;
         }
@@ -78,6 +79,7 @@ public class TickEngine implements SecondObservable {
 
     @Override
     public void removeObservers(SecondObserver observer) {
+        LOG.v("");
         int i = observers.indexOf(observer);
         if (i >= 0) {
             observers.remove(i);

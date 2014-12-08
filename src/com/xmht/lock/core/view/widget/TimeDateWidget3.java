@@ -9,9 +9,9 @@ import android.widget.TextView;
 import com.xmht.lock.core.data.time.TimeLevel;
 import com.xmht.lock.core.data.time.format.TimeFormatter;
 import com.xmht.lock.core.view.TimeDateWidget;
-import com.xmht.lock.debug.LOG;
-import com.xmht.lock.utils.Utils;
 import com.xmht.lockair.R;
+import com.ysj.tools.debug.LOG;
+import com.ysj.tools.utils.Fonts;
 
 public class TimeDateWidget3 extends TimeDateWidget {
     private TextView dateTV;
@@ -42,14 +42,17 @@ public class TimeDateWidget3 extends TimeDateWidget {
 
     @Override
     protected void setFont() {
-        Utils.setFontToView(dateTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(weekTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(hmTV, "fonts/Helvetica-Light.ttf");
-        Utils.setFontToView(amTV, "fonts/Helvetica-Light.ttf");
+        Fonts.setFontToView(dateTV, "fonts/Helvetica-Light.ttf");
+        Fonts.setFontToView(weekTV, "fonts/Helvetica-Light.ttf");
+        Fonts.setFontToView(hmTV, "fonts/Helvetica-Light.ttf");
+        Fonts.setFontToView(amTV, "fonts/Helvetica-Light.ttf");
     }
 
     @Override
     public void onTimeChanged(TimeLevel level) {
+        if (level.ordinal() > 0) {
+            LOG.e(level.name());
+        }
         switch (level) {
             case YEAR:
             case MONTH:

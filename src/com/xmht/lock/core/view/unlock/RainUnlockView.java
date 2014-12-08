@@ -13,11 +13,11 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.LinearInterpolator;
 
-import com.xmht.lock.anim.AnimationBundle;
-import com.xmht.lock.anim.Tweener;
 import com.xmht.lock.core.view.UnlockView;
-import com.xmht.lock.utils.Utils;
 import com.xmht.lockair.R;
+import com.ysj.tools.anim.AnimationBundle;
+import com.ysj.tools.anim.Tweener;
+import com.ysj.tools.utils.Displays;
 
 public class RainUnlockView extends UnlockView {
     private Paint paint;
@@ -46,12 +46,12 @@ public class RainUnlockView extends UnlockView {
 
     public RainUnlockView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        textSize = Utils.dip2px(getContext(), 18);
+        textSize = Displays.dip2px(getContext(), 18);
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setTextSize(textSize);
         
-        textPaddingLeft = Utils.dip2px(getContext(), 25);
+        textPaddingLeft = Displays.dip2px(getContext(), 25);
         textColor = TEXT_COLOR;
         text = context.getResources().getString(R.string.unlock);
         

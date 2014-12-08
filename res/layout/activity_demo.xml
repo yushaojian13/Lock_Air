@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res/com.xmht.lockair"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.xmht.lock.demo.view.RoundView
+    <com.ysj.tools.view.RoundView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_centerInParent="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
         custom:ringSize="1px" />
 
     <ImageView
@@ -19,7 +20,7 @@
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true" />
 
-    <com.xmht.lock.demo.view.FloatingButton
+    <com.ysj.tools.view.FloatingButton
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

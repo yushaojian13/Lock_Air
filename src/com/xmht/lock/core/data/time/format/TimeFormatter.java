@@ -5,7 +5,7 @@ import java.util.Locale;
 
 import com.xmht.lock.core.data.time.engine.TimeRaw;
 import com.xmht.lock.core.data.time.observe.TimeLevelObserver;
-import com.xmht.lock.debug.LOG;
+import com.ysj.tools.debug.LOG;
 
 public class TimeFormatter {
     public static final String[] MONTH = {
@@ -40,6 +40,7 @@ public class TimeFormatter {
     }
 
     public static void register(TimeLevelObserver observer) {
+        LOG.v("");
         if (observer == null) {
             LOG.e("Operation cannot be done, observer is null!");
             return;
@@ -49,6 +50,7 @@ public class TimeFormatter {
     }
 
     public static void unregister(TimeLevelObserver observer) {
+        LOG.v("");
         if (observer == null) {
             LOG.e("Operation cannot be done, observer is null!");
             return;

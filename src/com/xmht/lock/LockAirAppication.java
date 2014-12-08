@@ -2,9 +2,9 @@ package com.xmht.lock;
 
 import android.app.Application;
 
-import com.xmht.lock.debug.LOG;
-import com.xmht.lock.utils.SPHelper;
 import com.xmht.lock.widget.utils.AppWidgetUtils;
+import com.ysj.tools.debug.LOG;
+import com.ysj.tools.utils.SPHelper;
 
 public class LockAirAppication extends Application {
     

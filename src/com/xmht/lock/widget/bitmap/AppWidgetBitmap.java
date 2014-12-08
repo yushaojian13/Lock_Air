@@ -9,9 +9,9 @@ import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.text.format.Time;
 
-import com.xmht.lock.utils.SPHelper;
-import com.xmht.lock.utils.Utils;
 import com.xmht.lock.widget.formatter.ITimeFormatter;
+import com.ysj.tools.utils.Fonts;
+import com.ysj.tools.utils.SPHelper;
 
 public abstract class AppWidgetBitmap {
     protected boolean showShadow;
@@ -91,7 +91,7 @@ public abstract class AppWidgetBitmap {
         Paint paint = new Paint();
         paint.setAntiAlias(true);
         paint.setTextAlign(Align.LEFT);
-        paint.setTypeface(Utils.createTypeface(context, font, false));
+        paint.setTypeface(Fonts.createTypeface(context, font, false));
         return paint;
     }
 

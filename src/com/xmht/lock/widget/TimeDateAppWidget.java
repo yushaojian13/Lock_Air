@@ -1,11 +1,11 @@
 
 package com.xmht.lock.widget;
 
-import com.xmht.lock.debug.LOG;
-import com.xmht.lock.widget.utils.AppWidgetUtils;
-
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+
+import com.xmht.lock.widget.utils.AppWidgetUtils;
+import com.ysj.tools.debug.LOG;
 
 public class TimeDateAppWidget extends AppWidgetProvider {
 

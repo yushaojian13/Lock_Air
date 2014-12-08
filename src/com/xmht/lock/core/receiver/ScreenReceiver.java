@@ -7,8 +7,8 @@ import android.content.Intent;
 
 import com.xmht.lock.core.activity.LockActivity;
 import com.xmht.lock.core.service.LockService;
-import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.utils.AppWidgetUtils;
+import com.ysj.tools.debug.LOG;
 
 public class ScreenReceiver extends BroadcastReceiver {
 

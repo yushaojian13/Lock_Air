@@ -15,9 +15,9 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.service.AppWidgetService;
 import com.xmht.lockair.R;
+import com.ysj.tools.debug.LOG;
 
 public class ConfigActivity extends Activity implements OnCheckedChangeListener, OnClickListener {
     private RadioGroup styleRG;

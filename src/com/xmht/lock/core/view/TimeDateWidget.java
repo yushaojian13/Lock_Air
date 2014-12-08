@@ -8,6 +8,7 @@ import com.xmht.lock.core.data.time.TimeLevel;
 import com.xmht.lock.core.data.time.format.TimeFormatter;
 import com.xmht.lock.core.data.time.observe.TimeLevelObserver;
 import com.xmht.lock.core.view.listener.SwipeListener;
+import com.ysj.tools.debug.LOG;
 
 public abstract class TimeDateWidget extends Widget implements TimeLevelObserver {
     
@@ -26,11 +27,13 @@ public abstract class TimeDateWidget extends Widget implements TimeLevelObserver
 
     @Override
     public void onStart() {
+        LOG.v("");
         TimeFormatter.register(this);
     }
 
     @Override
     public void onStop() {
+        LOG.v("");
         TimeFormatter.unregister(this);
     }
     

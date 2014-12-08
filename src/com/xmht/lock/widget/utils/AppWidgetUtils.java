@@ -11,12 +11,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.widget.RemoteViews;
 
-import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.TimeDateAppWidget;
 import com.xmht.lock.widget.TimeDateAppWidgetSmall;
 import com.xmht.lock.widget.activity.ConfigActivity;
 import com.xmht.lock.widget.service.AppWidgetService;
 import com.xmht.lockair.R;
+import com.ysj.tools.debug.LOG;
 
 public class AppWidgetUtils {
 

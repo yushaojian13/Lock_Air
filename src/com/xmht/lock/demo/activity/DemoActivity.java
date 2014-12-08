@@ -1,11 +1,13 @@
 
 package com.xmht.lock.demo.activity;
 
-import com.xmht.lock.demo.view.ImageCreator;
-import com.xmht.lockair.R;
-
 import android.app.Activity;
+import android.graphics.Color;
 import android.widget.ImageView;
+
+import com.xmht.lockair.R;
+import com.ysj.tools.utils.Displays;
+import com.ysj.tools.view.ImageCreator;
 
 public class DemoActivity extends Activity {
     private ImageView demoIV;
@@ -15,7 +17,7 @@ public class DemoActivity extends Activity {
         setContentView(R.layout.activity_demo);
         demoIV = (ImageView) findViewById(R.id.iv_demo);
         
-        ImageCreator imageCreator = new ImageCreator(this, "01:23", 16);
+        ImageCreator imageCreator = new ImageCreator(this, "01:23", Displays.dip2px(this, 16), Color.BLACK, "fonts/Helvetica-Light.ttf");
         demoIV.setImageDrawable(imageCreator.createDrawable());
     };
 }

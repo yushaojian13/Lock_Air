@@ -8,9 +8,9 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.format.Time;
 
-import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.formatter.ITimeFormatter;
 import com.xmht.lock.widget.formatter.LayerTimeFormatter;
+import com.ysj.tools.debug.LOG;
 
 public class LayerAppWidgetBitmap extends AppWidgetBitmap {
 

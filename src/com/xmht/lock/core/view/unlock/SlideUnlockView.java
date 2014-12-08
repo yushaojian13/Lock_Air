@@ -10,9 +10,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.LinearInterpolator;
 
-import com.xmht.lock.anim.AnimationBundle;
-import com.xmht.lock.anim.Tweener;
 import com.xmht.lock.core.view.UnlockView;
+import com.ysj.tools.anim.AnimationBundle;
+import com.ysj.tools.anim.Tweener;
 
 public class SlideUnlockView extends UnlockView {
 

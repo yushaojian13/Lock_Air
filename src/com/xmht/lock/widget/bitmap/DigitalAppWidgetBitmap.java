@@ -9,10 +9,10 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.format.Time;
 
-import com.xmht.lock.debug.LOG;
 import com.xmht.lock.widget.formatter.DigitalTimeFormatter;
 import com.xmht.lock.widget.formatter.ITimeFormatter;
 import com.xmht.lockair.R;
+import com.ysj.tools.debug.LOG;
 
 public class DigitalAppWidgetBitmap extends AppWidgetBitmap {
 

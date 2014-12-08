@@ -8,23 +8,23 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.xmht.lock.core.receiver.ScreenReceiver;
-import com.xmht.lock.debug.LOG;
+import com.ysj.tools.debug.LOG;
 
 public class LockService extends Service {
     private ScreenReceiver screenReceiver;
 
     @Override
     public void onCreate() {
+        LOG.v("");
         super.onCreate();
         registerScreenReceiver();
-        LOG.v("");
     }
     
     @Override
     public void onDestroy() {
+        LOG.v("");
         super.onDestroy();
         unregisterScreenReceiver();
-        LOG.v("");
     }
 
     private void registerScreenReceiver() {

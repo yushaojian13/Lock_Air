@@ -14,8 +14,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.text.format.Time;
 
-import com.xmht.lock.debug.LOG;
-import com.xmht.lock.utils.SPHelper;
 import com.xmht.lock.widget.bitmap.AppWidgetBitmap;
 import com.xmht.lock.widget.bitmap.CircleAppWidgetBitmap;
 import com.xmht.lock.widget.bitmap.DigitalAppWidgetBitmap;
@@ -24,6 +22,8 @@ import com.xmht.lock.widget.bitmap.NewAppWidgetBitmap;
 import com.xmht.lock.widget.utils.AppWidgetUtils;
 import com.xmht.lock.widget.utils.BitmapUtils;
 import com.xmht.lockair.R;
+import com.ysj.tools.debug.LOG;
+import com.ysj.tools.utils.SPHelper;
 
 public class AppWidgetService extends Service {
 
