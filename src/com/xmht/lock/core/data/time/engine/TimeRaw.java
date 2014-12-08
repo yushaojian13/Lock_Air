@@ -83,7 +83,6 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
     public void onUpdate() {
         time.setToNow();
         if (year != time.year) {
-            notifyObservers(TimeLevel.YEAR);
             year = time.year;
             month = time.month;
             week = time.weekDay;
@@ -91,45 +90,46 @@ public class TimeRaw implements TimeLevelObservable, SecondObserver {
             hour = time.hour;
             minute = time.minute;
             second = time.second;
+            notifyObservers(TimeLevel.YEAR);
         }
         else if (month != time.month) {
-            notifyObservers(TimeLevel.MONTH);
             month = time.month;
             week = time.weekDay;
             day = time.monthDay;
             hour = time.hour;
             minute = time.minute;
             second = time.second;
+            notifyObservers(TimeLevel.MONTH);
         }
         else if (week != time.weekDay) {
-            notifyObservers(TimeLevel.WEEK);
             week = time.weekDay;
             day = time.monthDay;
             hour = time.hour;
             minute = time.minute;
             second = time.second;
+            notifyObservers(TimeLevel.WEEK);
         }
         else if (day != time.monthDay) {
-            notifyObservers(TimeLevel.DAY);
             day = time.monthDay;
             hour = time.hour;
             minute = time.minute;
             second = time.second;
+            notifyObservers(TimeLevel.DAY);
         }
         else if (hour != time.hour) {
-            notifyObservers(TimeLevel.HOUR);
             hour = time.hour;
             minute = time.minute;
             second = time.second;
+            notifyObservers(TimeLevel.HOUR);
         }
         else if (minute != time.minute) {
-            notifyObservers(TimeLevel.MINUTE);
             minute = time.minute;
             second = time.second;
+            notifyObservers(TimeLevel.MINUTE);
         }
         else if (second != time.second) {
-            notifyObservers(TimeLevel.SECOND);
             second = time.second;
+            notifyObservers(TimeLevel.SECOND);
         }
     }
 
