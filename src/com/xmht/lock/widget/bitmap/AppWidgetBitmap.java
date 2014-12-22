@@ -9,6 +9,7 @@ import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.text.format.Time;
 
+import com.xmht.lock.LockAirAppication;
 import com.xmht.lock.widget.formatter.ITimeFormatter;
 import com.ysj.tools.utils.Fonts;
 import com.ysj.tools.utils.SPHelper;
@@ -29,13 +30,16 @@ public abstract class AppWidgetBitmap {
     protected Context context;
     protected Time time;
     protected ITimeFormatter timeFormatter;
+    
+    private SPHelper spHelper;
 
     public AppWidgetBitmap(Context context, Time time) {
-        showShadow = SPHelper.get(SP_WIDGET_SHADOW, false);
-        scaleFactor = SPHelper.get(SP_WIDGET_SCALE, 2.0f);
-        primaryColor = SPHelper.get(SP_WIDGET_COLOR1, Color.WHITE);
-        secondaryColor = SPHelper.get(SP_WIDGET_COLOR2, Color.WHITE);
-        font = SPHelper.get(SP_WIDGET_FONT, "fonts/Helvetica-Light.ttf");
+        spHelper = new SPHelper(context, LockAirAppication.SP_TAG);
+        showShadow = spHelper.get(SP_WIDGET_SHADOW, false);
+        scaleFactor = spHelper.get(SP_WIDGET_SCALE, 2.0f);
+        primaryColor = spHelper.get(SP_WIDGET_COLOR1, Color.WHITE);
+        secondaryColor = spHelper.get(SP_WIDGET_COLOR2, Color.WHITE);
+        font = spHelper.get(SP_WIDGET_FONT, "fonts/Helvetica-Light.ttf");
 
         this.context = context;
         this.time = time;
@@ -48,7 +52,7 @@ public abstract class AppWidgetBitmap {
 
     public void showShadow(boolean shadowOn) {
         showShadow = shadowOn;
-        SPHelper.put(SP_WIDGET_SHADOW, shadowOn);
+        spHelper.put(SP_WIDGET_SHADOW, shadowOn);
     }
 
     public void setColors(int[] colors) {
@@ -58,11 +62,11 @@ public abstract class AppWidgetBitmap {
 
         if (colors[0] != 0) {
             primaryColor = colors[0];
-            SPHelper.put(SP_WIDGET_COLOR1, primaryColor);
+            spHelper.put(SP_WIDGET_COLOR1, primaryColor);
         }
         if (colors.length > 1 && colors[1] != 0) {
             secondaryColor = colors[1];
-            SPHelper.put(SP_WIDGET_COLOR2, secondaryColor);
+            spHelper.put(SP_WIDGET_COLOR2, secondaryColor);
         }
     }
 
@@ -72,12 +76,12 @@ public abstract class AppWidgetBitmap {
         }
 
         this.font = font;
-        SPHelper.put(SP_WIDGET_FONT, font);
+        spHelper.put(SP_WIDGET_FONT, font);
     }
 
     public void setScaleFactor(float factor) {
         scaleFactor = factor;
-        SPHelper.put(SP_WIDGET_SCALE, scaleFactor);
+        spHelper.put(SP_WIDGET_SCALE, scaleFactor);
     }
 
     protected Rect computeRect(Paint paint, String text, float textSize) {

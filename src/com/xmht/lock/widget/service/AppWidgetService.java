@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.text.format.Time;
 
+import com.xmht.lock.LockAirAppication;
 import com.xmht.lock.widget.bitmap.AppWidgetBitmap;
 import com.xmht.lock.widget.bitmap.CircleAppWidgetBitmap;
 import com.xmht.lock.widget.bitmap.DigitalAppWidgetBitmap;
@@ -44,13 +45,16 @@ public class AppWidgetService extends Service {
     public static final String EXTRA_WIDGET_FONT = "widget_font";
 
     public static final String SP_WIDGET_STYLE = "sp_widget_style";
+    
+    private SPHelper spHelper;
 
     @Override
     public void onCreate() {
         LOG.e("");
         super.onCreate();
         time = new Time();
-        String style = SPHelper.get(SP_WIDGET_STYLE, getString(R.string.widget_style_digit));
+        spHelper = new SPHelper(this, LockAirAppication.SP_TAG);
+        String style = spHelper.get(SP_WIDGET_STYLE, getString(R.string.widget_style_digit));
         curAppWidgetBitmap = getByStyle(style);
         onUpdate(false);
         registerReceiver();
@@ -77,7 +81,7 @@ public class AppWidgetService extends Service {
                 String style = extras.getString(EXTRA_WIDGET_STYLE, null);
                 if (newAppWidgetBitmap != null && style != null) {
                     curAppWidgetBitmap = newAppWidgetBitmap;
-                    SPHelper.put(SP_WIDGET_STYLE, style);
+                    spHelper.put(SP_WIDGET_STYLE, style);
                     onUpdate(false);
                 }
             } else {

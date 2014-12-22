@@ -31,6 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.xmht.lock.demo.activity.SlideActivity" >
+        </activity>
         <activity android:name="com.xmht.lock.widget.activity.ConfigActivity" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />

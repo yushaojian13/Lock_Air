@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
+import com.xmht.lock.LockAirAppication;
 import com.xmht.lock.core.activity.LockActivity;
 import com.xmht.lock.core.data.UnlockCenter;
 import com.xmht.lock.core.data.WallpaperCenter;
@@ -33,6 +34,8 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
     private ImageView wallpaperIV;
     private TimeDateWidget timeView;
     private UnlockView unlockView;
+    
+    private SPHelper spHelper;
 
     public SlideLayout(Context context) {
         this(context, null);
@@ -48,9 +51,10 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
 
     @Override
     protected void setView() {
-        wallpaperIndex = SPHelper.get("wallpaper", 0);
-        widgetIndex = SPHelper.get("time", 0);
-        unlockIndex = SPHelper.get("unlock", 0);
+        spHelper = new SPHelper(getContext(), LockAirAppication.SP_TAG);
+        wallpaperIndex = spHelper.get("wallpaper", 0);
+        widgetIndex = spHelper.get("time", 0);
+        unlockIndex = spHelper.get("unlock", 0);
 
         screenHeight = Displays.getDH(getContext());
         
@@ -181,9 +185,9 @@ public class SlideLayout extends Widget implements SwipeListener, UnlockListener
     public void onStop() {
         LOG.v("");
         timeView.onStop();
-        SPHelper.put("wallpaper", wallpaperIndex);
-        SPHelper.put("time", widgetIndex);
-        SPHelper.put("unlock", unlockIndex);
+        spHelper.put("wallpaper", wallpaperIndex);
+        spHelper.put("time", widgetIndex);
+        spHelper.put("unlock", unlockIndex);
     }
     
     @Override
