@@ -133,7 +133,7 @@ public class TimeFormatter {
     }
 
     public static String getMonth(boolean full, boolean upper) {
-        if (timeRaw.getMonth() < 1 || timeRaw.getMonth() > 12) {
+        if (timeRaw.getMonth() < 0 || timeRaw.getMonth() > 11) {
             return "ERROR";
         }
 
